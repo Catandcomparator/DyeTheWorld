@@ -25,7 +25,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel
 
 object DyedWaystones {
 
-    private val REGISTRATE = DyedRegistrate(WAYSTONES)
+    private val REGISTRATE = DyedRegistrate.create(WAYSTONES)
     private val DYES = dyesFor(WAYSTONES)
 
     val SHARESTONES = DYES.associateWith { dye ->

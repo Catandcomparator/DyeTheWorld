@@ -28,7 +28,7 @@ import net.minecraftforge.common.crafting.conditions.ModLoadedCondition
 import net.minecraftforge.eventbus.api.IEventBus
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
-class DyedRegistrate @Deprecated("use create instead") constructor(modid: String) :
+class DyedRegistrate private constructor(modid: String) :
     AbstractRegistrate<DyedRegistrate>(modid) {
 
     companion object {

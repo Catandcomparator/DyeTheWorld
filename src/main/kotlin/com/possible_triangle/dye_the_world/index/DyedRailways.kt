@@ -18,7 +18,7 @@ import net.minecraftforge.common.Tags
 
 object DyedRailways {
 
-    private val REGISTRATE = DyedRegistrate(CREATE_RAILWAYS)
+    private val REGISTRATE = DyedRegistrate.create(CREATE_RAILWAYS)
 
     private val DYES = dyesFor(CREATE_RAILWAYS)
 

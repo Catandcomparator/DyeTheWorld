@@ -18,9 +18,9 @@ object DyedSupplementaries {
 
     private val DYES = dyesFor(SUPPLEMENTARIES)
 
-    private val REGISTRATE = DyedRegistrate(SUPPLEMENTARIES)
-    private val REGISTRATE_AMENDMENTS = DyedRegistrate(AMENDMENTS)
-    private val SQUARED_REGISTRATE = DyedRegistrate(SUPPLEMENTARIES_SQUARED)
+    private val REGISTRATE = DyedRegistrate.create(SUPPLEMENTARIES)
+    private val REGISTRATE_AMENDMENTS = DyedRegistrate.create(AMENDMENTS)
+    private val SQUARED_REGISTRATE = DyedRegistrate.create(SUPPLEMENTARIES_SQUARED)
 
     val SACKS = DYES.associateWith { dye ->
         SQUARED_REGISTRATE.`object`("sack_${dye}")

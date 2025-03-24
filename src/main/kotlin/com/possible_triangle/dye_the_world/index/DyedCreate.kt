@@ -23,7 +23,7 @@ import net.minecraft.tags.BlockTags
 
 object DyedCreate {
 
-    private val REGISTRATE = DyedRegistrate(CREATE)
+    private val REGISTRATE = DyedRegistrate.create(CREATE)
 
     private val DYES = dyesFor(CREATE)
 

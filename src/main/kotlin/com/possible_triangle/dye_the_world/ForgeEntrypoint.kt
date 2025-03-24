@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod
 @Mod(Constants.MOD_ID)
 object ForgeEntrypoint {
 
-    val REGISTRATE = DyedRegistrate(Constants.MOD_ID)
+    val REGISTRATE = DyedRegistrate.create(Constants.MOD_ID)
 
     val OPTIONAL_LOOT_ENTRY = REGISTRATE.`object`("item")
         .generic(Registries.LOOT_POOL_ENTRY_TYPE) { LootPoolEntryType(OptionalLootEntry.Serializer) }

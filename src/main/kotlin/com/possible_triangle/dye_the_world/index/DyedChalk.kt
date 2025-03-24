@@ -17,7 +17,7 @@ import net.minecraft.world.item.Item
 
 object DyedChalk {
 
-    private val REGISTRATE = DyedRegistrate(CHALK)
+    private val REGISTRATE = DyedRegistrate.create(CHALK)
 
     private val DYES = dyesFor(CHALK)
 

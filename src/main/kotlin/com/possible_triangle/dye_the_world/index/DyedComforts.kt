@@ -24,7 +24,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue
 
 object DyedComforts {
 
-    private val REGISTRATE = DyedRegistrate(COMFORTS)
+    private val REGISTRATE = DyedRegistrate.create(COMFORTS)
 
     val SLEEPING_BAGS = dyesFor(COMFORTS).associateWith { dye ->
         REGISTRATE.`object`("sleeping_bag_${dye}")
