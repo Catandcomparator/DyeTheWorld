@@ -1,4 +1,4 @@
-
+import com.diffplug.spotless.LineEnding
 import com.possible_triangle.gradle.features.publishing.DependencyBuilder
 import net.minecraftforge.gradle.common.util.MinecraftExtension
 import net.minecraftforge.gradle.userdev.jarjar.JarJarProjectExtension
@@ -215,6 +215,8 @@ uploadToModrinth {
 enableSonarQube()
 
 spotless {
+    lineEndings = LineEnding.UNIX
+
     kotlin {
         ktlint()
 
@@ -238,5 +240,10 @@ spotless {
         suppressLintsFor {
             shortCode = "standard:property-naming"
         }
+    }
+
+    json {
+        target("src/**/*.json")
+        leadingTabsToSpaces()
     }
 }
