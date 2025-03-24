@@ -126,8 +126,12 @@ object DyedSupplementaries {
         REGISTRATE.`object`("awning_$dye")
             .block { AwningBlock(dye, it) }
             .lang("${dye.translation} Awning")
+            .optionalTag(DyedTags.Blocks.MINEABLE_SHEAR)
+            .optionalTag(DyedTags.Blocks.BOUNCY_BLOCKS)
+            .optionalTag(DyedTags.Blocks.AWNINGS)
             .awningBlockstate(dye)
             .withItem {
+                optionalTag(DyedTags.Items.AWNINGS)
                 awningItemModel(dye)
                 awningRecipe(dye)
             }

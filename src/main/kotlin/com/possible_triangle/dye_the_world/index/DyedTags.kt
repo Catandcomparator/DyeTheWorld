@@ -6,6 +6,7 @@ import com.possible_triangle.dye_the_world.extensions.createId
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
@@ -23,6 +24,7 @@ sealed class DyedTags<T>(private val registry: ResourceKey<Registry<T>>) {
         val CHAIRS = create(Mods.CREATE_INTERIORS, "chairs")
         val FLOOR_CHAIRS = create(Mods.CREATE_INTERIORS, "floor_chairs")
         val NON_CLEANABLE = create(Mods.SUPPLEMENTARIES, "non_cleanable")
+        val AWNINGS = create(Mods.SUPPLEMENTARIES, "awnings")
     }
 
     object Blocks : DyedTags<Block>(Registries.BLOCK) {
@@ -35,8 +37,13 @@ sealed class DyedTags<T>(private val registry: ResourceKey<Registry<T>>) {
         val CHAIRS = create(Mods.CREATE_INTERIORS, "chairs")
         val FLOOR_CHAIRS = create(Mods.CREATE_INTERIORS, "floor_chairs")
         val NON_CLEANABLE = create(Mods.SUPPLEMENTARIES, "non_cleanable")
+        val BOUNCY_BLOCKS = create(Mods.SUPPLEMENTARIES, "bouncy_blocks")
+        val AWNINGS = create(Mods.SUPPLEMENTARIES, "awnings")
+        val MINEABLE_SHEAR = create("mineable/shear")
+        val MINEABLE_KNIFE = create(Mods.FARMERS_DELIGHT, "mineable/knife")
     }
 
     protected fun create(namespace: String, path: String): TagKey<T> = TagKey.create(registry, namespace.createId(path))
+    protected fun create(path: String): TagKey<T> = TagKey.create(registry, ResourceLocation(path))
 
 }
