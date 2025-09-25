@@ -1,4 +1,4 @@
-import com.diffplug.spotless.LineEnding
+
 import com.possible_triangle.gradle.features.publishing.DependencyBuilder
 import net.minecraftforge.gradle.common.util.MinecraftExtension
 import net.minecraftforge.gradle.userdev.jarjar.JarJarProjectExtension
@@ -8,6 +8,7 @@ val mod_id: String by extra
 val mixin_extras_version: String by extra
 val mc_version: String by extra
 val registrate_version: String by extra
+val multikulti_version: String by extra
 val create_version: String by extra
 val ponder_version: String by extra
 val flywheel_version: String by extra
@@ -41,8 +42,7 @@ val waystones_version: String by extra
 val balm_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.2.5")
-    id("com.diffplug.spotless") version ("7.0.2")
+    id("com.possible-triangle.gradle") version ("0.2.18")
 }
 
 withKotlin()
@@ -50,35 +50,34 @@ withKotlin()
 forge {
     enableMixins()
 
-    dataGen(
-        existingMods = listOf(
-            "dye_depot",
-            "another_furniture",
-            "supplementaries",
-            "create",
-            "comforts",
-            "quark",
-            "suppsquared",
-            "farmersdelight",
-            "domesticationinnovation",
-            "createdeco",
-            "railways",
-            "chalk",
-            "upgrade_aquatic",
-            "waystones",
-            "moreconcrete",
-            "interiors"
-        )
-    )
+    dataGen {
+        existing("dye_depot")
+        existing("another_furniture")
+        existing("supplementaries")
+        existing("create")
+        existing("comforts")
+        existing("quark")
+        existing("suppsquared")
+        existing("farmersdelight")
+        existing("domesticationinnovation")
+        existing("createdeco")
+        existing("railways")
+        existing("chalk")
+        existing("upgrade_aquatic")
+        existing("waystones")
+        existing("moreconcrete")
+        existing("interiors")
+    }
 
     includesMod("com.tterrag.registrate:Registrate:${registrate_version}")
+    includesMod("com.possible-triangle:multikulti-datagen-forge-fix:${mc_version}-${multikulti_version}")
+    // TODO do I need this?
+    includesMod("com.possible-triangle:multikulti-core-forge:${mc_version}-${multikulti_version}")
+    // includesMod("com.possible-triangle:multikulti-registrate-forge:${mc_version}-${multikulti_version}")
 }
 
 configure<MixinExtension> {
     config("${mod_id}.data.mixins.json")
-    //config("citadel.mixins.json")
-    //config("domesticationinnovation.mixins.json")
-    //config("alexscaves.mixins.json")
 }
 
 // needed because of flywheel accessing the config too early
@@ -86,16 +85,13 @@ configure<MinecraftExtension> {
     runs {
         forEach {
             it.property("production", "true")
-
-            it.property("mixin.env.remapRefMap", "true")
-            it.property("mixin.env.refMapRemappingFile", project.file("build/createSrgToMcp/output.srg"))
         }
     }
 }
 
 repositories {
     modrinthMaven()
-    localMaven(project)
+    mavenLocal()
 
     maven {
         url = uri("https://maven.blamejared.com/")
@@ -128,6 +124,7 @@ dependencies {
     }
 
     modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    modImplementation("com.possible-triangle:multikulti-datagen-forge:${mc_version}-${multikulti_version}")
     modImplementation("com.simibubi.create:create-${mc_version}:${create_version}:slim") { isTransitive = false }
     modImplementation("net.createmod.ponder:Ponder-Forge-${mc_version}:${ponder_version}")
     modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${mc_version}:${flywheel_version}")
@@ -152,9 +149,9 @@ dependencies {
     modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${mc_version}:${flywheel_version}")
     modRuntimeOnly("mezz.jei:jei-${mc_version}-forge:${jei_version}")
     modRuntimeOnly("maven.modrinth:jade:${jade_version}")
-    modRuntimeOnly("maven.modrinth:dye-depot:${dye_depot_version}")
+    modRuntimeOnly("com.ninni.dye_depot:dye_depot:${dye_depot_version}")
     modRuntimeOnly("maven.modrinth:citadel:${citadel_version}")
-    // modRuntimeOnly("maven.modrinth:create-steam-n-rails:${create_railways_version}")
+    modRuntimeOnly("maven.modrinth:create-steam-n-rails:${create_railways_version}")
     modRuntimeOnly("maven.modrinth:interiors:${create_interiors_version}")
     modRuntimeOnly("maven.modrinth:curios:${curios_version}")
     modRuntimeOnly("maven.modrinth:ars-nouveau:${ars_nouveau_version}")
@@ -167,12 +164,9 @@ tasks.processResources {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-tasks.withType<Jar> {
-    exclude("**/*.xcf")
-}
-
 enablePublishing {
     githubPackages()
+    nexus()
 }
 
 fun DependencyBuilder.addDependencies() {
@@ -213,37 +207,4 @@ uploadToModrinth {
 }
 
 enableSonarQube()
-
-spotless {
-    lineEndings = LineEnding.UNIX
-
-    kotlin {
-        ktlint()
-
-        leadingTabsToSpaces()
-
-        suppressLintsFor {
-            shortCode = "standard:package-name"
-        }
-    }
-
-    java {
-        importOrder()
-        removeUnusedImports()
-
-        leadingTabsToSpaces()
-    }
-
-    kotlinGradle {
-        ktlint()
-
-        suppressLintsFor {
-            shortCode = "standard:property-naming"
-        }
-    }
-
-    json {
-        target("src/**/*.json")
-        leadingTabsToSpaces()
-    }
-}
+enableSpotless()
