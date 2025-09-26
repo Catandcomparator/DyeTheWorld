@@ -7,11 +7,11 @@
     }
   ],
   "criteria": {
-    "has_chairs": {
+    "has_floor_chairs": {
       "conditions": {
         "items": [
           {
-            "tag": "interiors:chairs"
+            "tag": "interiors:floor_chairs"
           }
         ]
       },
@@ -26,7 +26,7 @@
   },
   "requirements": [
     [
-      "has_chairs",
+      "has_floor_chairs",
       "has_the_recipe"
     ]
   ],

@@ -57,7 +57,9 @@ fun <T : Item, P> ItemBuilder<T, P>.chairRecipe() = recipe { context, provider -
         .requiresUnlocking(dye.blockOf("wool"))
         .save(provider)
 
-    if (!floor) {
+    if (floor) {
+        provider.dyeingRecipe(dye, DyedTags.Items.FLOOR_CHAIRS, context)
+    } else {
         val floor = BuiltInRegistries.BLOCK.getOrThrow(context.id.withPath { it.replace("_chair", "_floor_chair") })
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, context.get())
@@ -65,9 +67,9 @@ fun <T : Item, P> ItemBuilder<T, P>.chairRecipe() = recipe { context, provider -
             .requires(floor)
             .unlockedBy(dye.blockOf("wool"))
             .save(provider, provider.safeId(context.get()).withSuffix("_from_floor_chair"))
-    }
 
-    provider.dyeingRecipe(dye, DyedTags.Items.CHAIRS, context)
+        provider.dyeingRecipe(dye, DyedTags.Items.CHAIRS, context)
+    }
 }
 
 fun <T : Item, P> ItemBuilder<T, P>.chairItemModel() = model { context, provider ->
