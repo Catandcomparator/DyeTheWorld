@@ -6,6 +6,8 @@ import com.possible_triangle.dye_the_world.Constants.Mods.CLAYWORKS
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.registrate.shapedDyeingRecipe
+import com.teamabnormals.clayworks.core.registry.ClayworksBlocks
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS
 import net.minecraft.data.recipes.ShapedRecipeBuilder
@@ -38,7 +40,14 @@ object DyedClayworks {
                 tab(CreativeModeTabs.COLORED_BLOCKS)
                 tab(CreativeModeTabs.BUILDING_BLOCKS)
                 recipe { c, p ->
-                    p.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, c)
+                    val terracotta = TERRACOTTA[dye]!!
+                    p.stonecutting(terracotta.asIngredient(), BUILDING_BLOCKS, c)
+                    ShapedRecipeBuilder.shaped(BUILDING_BLOCKS, c.get(), 4)
+                        .pattern("XX")
+                        .pattern("XX")
+                        .defineUnlocking('X', terracotta.get())
+                        .save(p)
+                    p.shapedDyeingRecipe(dye, ClayworksBlocks.TERRACOTTA_BRICKS.get(), c)
                 }
             }
             .register()
