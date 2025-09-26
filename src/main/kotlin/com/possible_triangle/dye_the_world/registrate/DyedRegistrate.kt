@@ -83,6 +83,7 @@ class DyedRegistrate private constructor(modid: String) :
                 defaultBlockstate()
                 defaultLoot()
                 defaultLang()
+                tagDyed()
             }
         }
     }
@@ -105,6 +106,7 @@ class DyedRegistrate private constructor(modid: String) :
             ).apply {
                 defaultModel()
                 defaultLang()
+                tagDyed()
             }
         }
     }

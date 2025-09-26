@@ -1,5 +1,7 @@
 package com.possible_triangle.dye_the_world.registrate
 
+import com.possible_triangle.dye_the_world.extensions.optionalTag
+import com.possible_triangle.dye_the_world.index.DyedTags
 import com.possible_triangle.dye_the_world.withNamespace
 import com.tterrag.registrate.builders.BuilderCallback
 import com.tterrag.registrate.builders.ItemBuilder
@@ -31,6 +33,10 @@ class DyedItemBuilder<T : Item, P : Any> internal constructor(
                 cons.accept(context, provider)
             }
         }
+    }
+
+    fun tagDyed() {
+        optionalTag(DyedTags.Items.DYED[dye]!!)
     }
 
 }
