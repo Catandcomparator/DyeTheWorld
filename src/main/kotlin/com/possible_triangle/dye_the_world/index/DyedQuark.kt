@@ -59,12 +59,12 @@ object DyedQuark {
 
     val GLASS_SHARDS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_shard")
-            .item(::Item)
+            .dyedItem(dye, QUARK, ::Item)
             .optionalTab(CreativeModeTabs.INGREDIENTS) {
                 flagEnabled("glass_shard")
             }
             .optionalTag(DyedTags.Items.GLASS_SHARDS)
-            .recipe(QUARK) { context, provider ->
+            .recipe { context, provider ->
                 val glass = dye.blockOf("stained_glass")
                 provider.withCondition(flagCondition("glass_shard")) {
                     ShapedRecipeBuilder.shaped(BUILDING_BLOCKS, glass)
@@ -84,12 +84,12 @@ object DyedQuark {
 
     val STOOLS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_quark_stool")
-            .block { StoolBlock(null, dye) }
+            .dyedBlock(dye, QUARK) { StoolBlock(null, dye) }
             .optionalTag(DyedTags.Blocks.QUARK_STOOLS)
-            .quarkStoolBlockstate(dye)
+            .quarkStoolBlockstate()
             .lang("${dye.translation} Stool")
             .withItem {
-                quarkStoolRecipe(dye)
+                quarkStoolRecipe()
                 optionalTab(CreativeModeTabs.FUNCTIONAL_BLOCKS, CreativeModeTabs.COLORED_BLOCKS) {
                     flagEnabled("stools")
                 }
@@ -99,7 +99,7 @@ object DyedQuark {
 
     val SHINGLES = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_shingles")
-            .block(::Block)
+            .dyedBlock(dye, QUARK, ::Block)
             .initialProperties { dye.blockOf("terracotta") }
             .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
             .blockstate { c, p ->
@@ -111,7 +111,7 @@ object DyedQuark {
             .lang("${dye.translation} Terracotta Shingles")
             .germanLang("${dye.germanTranslation(Genus.F)} Schindeln")
             .withItem {
-                shinglesRecipes(dye)
+                shinglesRecipes()
                 optionalTab(CreativeModeTabs.FUNCTIONAL_BLOCKS, CreativeModeTabs.COLORED_BLOCKS) {
                     flagEnabled("shingles")
                 }
@@ -131,7 +131,7 @@ object DyedQuark {
             }
         },
         modifyItem = { dye ->
-            recipe(QUARK) { context, provider ->
+            recipe { context, provider ->
                 provider.withCondition(flagCondition("shingles")) {
                     provider.slab(SHINGLES[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                     provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context, 2)
@@ -154,7 +154,7 @@ object DyedQuark {
             }
         },
         modifyItem = { dye ->
-            recipe(QUARK) { context, provider ->
+            recipe { context, provider ->
                 provider.withCondition(flagCondition("shingles")) {
                     provider.stairs(SHINGLES[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                     provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context)
@@ -168,7 +168,7 @@ object DyedQuark {
 
     val FRAMED_GLASS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_framed_glass")
-            .block { ZetaGlassBlock(null, null, true, it) }
+            .dyedBlock(dye, QUARK) { ZetaGlassBlock(null, null, true, it) }
             .initialProperties { Blocks.GLASS }
             .properties { it.strength(3F, 10F) }
             .optionalTag(DyedTags.Blocks.FRAMED_GLASSES)
@@ -191,14 +191,14 @@ object DyedQuark {
                 }
                 optionalTag(Tags.Items.GLASS)
                 model { c, p -> p.blockItem(c).translucent() }
-                framedGlassRecipes(dye)
+                framedGlassRecipes()
             }
             .register()
     }
 
     val FRAMED_GLASS_PANES = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_framed_glass_pane")
-            .block {
+            .dyedBlock(dye, QUARK) {
                 val parent = FRAMED_GLASS[dye]!!.get()
                 ZetaInheritedPaneBlock(parent, null, BlockBehaviour.Properties.copy(parent))
             }
@@ -224,7 +224,7 @@ object DyedQuark {
                 optionalTab(CreativeModeTabs.FUNCTIONAL_BLOCKS, CreativeModeTabs.COLORED_BLOCKS) {
                     flagEnabled("framed_glass")
                 }
-                framedGlassPaneRecipes(dye)
+                framedGlassPaneRecipes()
             }
             .register()
     }

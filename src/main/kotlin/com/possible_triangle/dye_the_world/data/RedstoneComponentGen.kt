@@ -1,9 +1,9 @@
 package com.possible_triangle.dye_the_world.data
 
 import com.possible_triangle.dye_the_world.Constants.Mods.MORE_CONCRETE
-import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.namespace
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.util.nullness.NonNullSupplier
@@ -32,7 +32,7 @@ fun DyedRegistrate.createLevers(
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<LeverBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
     `object`("${dye}_${name.path}_lever")
-        .block(::LeverBlock)
+        .dyedBlock(dye, name.namespace, ::LeverBlock)
         .initialProperties(base)
         .blockstate { c, p ->
             val texture = dye.namespace.createId("block/${dye}_${name.path}")
@@ -66,7 +66,7 @@ fun DyedRegistrate.createLevers(
         .withItem {
             tab(CreativeModeTabs.COLORED_BLOCKS)
             tab(CreativeModeTabs.REDSTONE_BLOCKS)
-            recipe(name.namespace) { c, p ->
+            recipe { c, p ->
                 ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, c.get())
                     .pattern("|")
                     .pattern("#")
@@ -89,7 +89,7 @@ fun DyedRegistrate.createButtons(
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<ButtonBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
     `object`("${dye}_${name.path}_button")
-        .block { ButtonBlock(it, BlockSetType.STONE, 20, false) }
+        .dyedBlock(dye, name.namespace) { ButtonBlock(it, BlockSetType.STONE, 20, false) }
         .initialProperties(base)
         .optionalTag(BlockTags.BUTTONS)
         .blockstate { c, p ->
@@ -100,7 +100,7 @@ fun DyedRegistrate.createButtons(
             tab(CreativeModeTabs.COLORED_BLOCKS)
             tab(CreativeModeTabs.REDSTONE_BLOCKS)
             optionalTag(ItemTags.BUTTONS)
-            recipe(name.namespace) { c, p ->
+            recipe { c, p ->
                 p.singleItemUnfinished(base.asIngredient(), RecipeCategory.REDSTONE, c, 1, 1)
                     .group("concrete_button")
                     .save(p)
@@ -122,7 +122,7 @@ fun DyedRegistrate.createPressurePlates(
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<PressurePlateBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
     `object`("${dye}_${name.path}_pressure_plate")
-        .block { PressurePlateBlock(Sensitivity.MOBS, it, BlockSetType.STONE) }
+        .dyedBlock(dye, name.namespace) { PressurePlateBlock(Sensitivity.MOBS, it, BlockSetType.STONE) }
         .initialProperties(base)
         .optionalTag(BlockTags.PRESSURE_PLATES)
         .blockstate { c, p ->
@@ -132,7 +132,7 @@ fun DyedRegistrate.createPressurePlates(
         .withItem {
             tab(CreativeModeTabs.COLORED_BLOCKS)
             tab(CreativeModeTabs.REDSTONE_BLOCKS)
-            recipe(name.namespace) { c, p ->
+            recipe { c, p ->
                 ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, c.get())
                     .pattern("##")
                     .defineUnlocking('#', base.get())

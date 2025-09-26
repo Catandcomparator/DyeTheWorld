@@ -2,6 +2,10 @@
   "type": "minecraft:stonecutting",
   "conditions": [
     {
+      "type": "forge:mod_loaded",
+      "modid": "quark"
+    },
+    {
       "type": "quark:flag",
       "flag": "shingles"
     }

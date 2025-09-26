@@ -3,11 +3,11 @@ package com.possible_triangle.dye_the_world.data
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.ANOTHER_FURNITURE
 import com.possible_triangle.dye_the_world.blockOf
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.createVariant
-import com.possible_triangle.dye_the_world.extensions.recipe
 import com.possible_triangle.dye_the_world.extensions.yRot
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.starfish_studios.another_furniture.block.LampBlock
 import com.starfish_studios.another_furniture.registry.AFBlocks
 import com.tterrag.registrate.builders.BlockBuilder
@@ -16,13 +16,12 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.ConfiguredModel
 
-fun <T : Item, P> ItemBuilder<T, P>.lampRecipes(dye: DyeColor) = recipe(ANOTHER_FURNITURE) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.lampRecipes() = recipe { context, provider ->
     val wool = dye.blockOf("wool")
     ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 3)
         .group("lamps")
@@ -40,7 +39,7 @@ fun <T : Item, P> ItemBuilder<T, P>.lampRecipes(dye: DyeColor) = recipe(ANOTHER_
     }
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.lampBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <T : Block, P> BlockBuilder<T, P>.lampBlockstate() = blockstate { context, provider ->
     fun texture(suffix: String): ResourceLocation =
         Constants.MOD_ID.createId("block/$ANOTHER_FURNITURE/lamp/${dye}_$suffix")
 
@@ -69,7 +68,7 @@ fun <T : Block, P> BlockBuilder<T, P>.lampBlockstate(dye: DyeColor) = blockstate
     }
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.lampConnectorBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <T : Block, P> BlockBuilder<T, P>.lampConnectorBlockstate() = blockstate { context, provider ->
     fun texture(suffix: String): ResourceLocation =
         Constants.MOD_ID.createId("block/$ANOTHER_FURNITURE/lamp/${dye}_$suffix")
 
@@ -89,6 +88,6 @@ fun <T : Block, P> BlockBuilder<T, P>.lampConnectorBlockstate(dye: DyeColor) = b
     }
 }
 
-fun <T : Item, P> ItemBuilder<T, P>.lampItemModel(dye: DyeColor) = model { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.lampItemModel() = model { context, provider ->
     provider.withExistingParent(context.name, Constants.MOD_ID.createId("block/$ANOTHER_FURNITURE/lamp/$dye"))
 }

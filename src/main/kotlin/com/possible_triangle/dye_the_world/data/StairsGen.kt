@@ -1,8 +1,8 @@
 package com.possible_triangle.dye_the_world.data
 
-import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.namespace
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.util.nullness.NonNullSupplier
@@ -23,7 +23,7 @@ fun DyedRegistrate.createStairs(
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<StairBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
     `object`("${dye}_${name.path}_stairs")
-        .block { StairBlock({ base.get().defaultBlockState() }, it) }
+        .dyedBlock(dye, name.namespace) { StairBlock({ base.get().defaultBlockState() }, it) }
         .initialProperties(base)
         .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
         .optionalTag(BlockTags.STAIRS)
@@ -35,7 +35,7 @@ fun DyedRegistrate.createStairs(
             tab(CreativeModeTabs.COLORED_BLOCKS)
             tab(CreativeModeTabs.BUILDING_BLOCKS)
             optionalTag(ItemTags.STAIRS)
-            recipe(name.namespace) { c, p -> p.stairs(base.asIngredient(), RecipeCategory.BUILDING_BLOCKS, c, null, true) }
+            recipe { c, p -> p.stairs(base.asIngredient(), RecipeCategory.BUILDING_BLOCKS, c, null, true) }
             modifyItem(dye)
         }
         .apply { modifyBlock(dye) }

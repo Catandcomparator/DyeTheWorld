@@ -4,21 +4,21 @@ import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.CREATE
 import com.possible_triangle.dye_the_world.Constants.Mods.CREATE_INTERIORS
 import com.possible_triangle.dye_the_world.blockOf
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.index.DyedTags
 import com.possible_triangle.dye_the_world.`object`.block.DummyChairBlock
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.tags.ItemTags
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraftforge.client.model.generators.ConfiguredModel
 
-fun <P> BlockBuilder<DummyChairBlock, P>.chairBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <P> BlockBuilder<DummyChairBlock, P>.chairBlockstate() = blockstate { context, provider ->
     provider.createVariant(context) { state ->
         val armrests = state.getValue(DummyChairBlock.ARMRESTS)
         val facing = state.getValue(DummyChairBlock.FACING)
@@ -40,7 +40,7 @@ fun <P> BlockBuilder<DummyChairBlock, P>.chairBlockstate(dye: DyeColor) = blocks
     }
 }
 
-fun <T : Item, P> ItemBuilder<T, P>.chairRecipe(dye: DyeColor) = recipe(CREATE) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.chairRecipe() = recipe { context, provider ->
     val floor = context.name.endsWith("_floor_chair")
     val seat = BuiltInRegistries.BLOCK.getOrThrow(CREATE.createId("${dye}_seat"))
     val secondaryIngredient = if (floor) ItemTags.WOODEN_SLABS else ItemTags.PLANKS

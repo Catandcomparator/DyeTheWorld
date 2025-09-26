@@ -1,7 +1,6 @@
 package com.possible_triangle.dye_the_world.index
 
 import com.possible_triangle.dye_the_world.Constants.Mods.CHALK
-import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.data.chalkBlockstate
 import com.possible_triangle.dye_the_world.data.chalkBoxModel
 import com.possible_triangle.dye_the_world.data.chalkItemModel
@@ -9,6 +8,7 @@ import com.possible_triangle.dye_the_world.data.chalkRecipe
 import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.optionalTag
 import com.possible_triangle.dye_the_world.extensions.translation
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import io.github.mortuusars.chalk.Chalk
 import io.github.mortuusars.chalk.block.ChalkMarkBlock
 import io.github.mortuusars.chalk.items.ChalkItem
@@ -23,7 +23,7 @@ object DyedChalk {
 
     val CHALK_MARKS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_chalk_mark")
-            .block { ChalkMarkBlock(dye, it) }
+            .dyedBlock(dye) { ChalkMarkBlock(dye, it) }
             .optionalTag(Chalk.Tags.Blocks.CHALK_MARKS)
             .lang("${dye.translation} Chalk Mark")
             .chalkBlockstate()
@@ -32,13 +32,13 @@ object DyedChalk {
 
     val CHALKS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_chalk")
-            .item { ChalkItem(dye, it) }
+            .dyedItem(dye) { ChalkItem(dye, it) }
             .optionalTag(Chalk.Tags.Items.CHALKS)
             .optionalTag(dye.tag)
             .lang("${dye.translation} Chalk")
             .tab(CreativeModeTabs.TOOLS_AND_UTILITIES)
-            .chalkItemModel(dye)
-            .chalkRecipe(dye)
+            .chalkItemModel()
+            .chalkRecipe()
             .register()
     }
 

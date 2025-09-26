@@ -1,10 +1,6 @@
 {
   "values": [
     {
-      "id": "dye_depot:maroon_dye",
-      "required": false
-    },
-    {
       "id": "chalk:maroon_chalk",
       "required": false
     }

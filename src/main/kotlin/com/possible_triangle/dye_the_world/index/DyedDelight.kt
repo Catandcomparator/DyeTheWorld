@@ -1,17 +1,15 @@
 package com.possible_triangle.dye_the_world.index
 
-import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.FARMERS_DELIGHT
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
+import com.possible_triangle.dye_the_world.Genus
 import com.possible_triangle.dye_the_world.data.canvasSignBlockstate
 import com.possible_triangle.dye_the_world.data.canvasSignItemModel
 import com.possible_triangle.dye_the_world.data.canvasSignRecipes
 import com.possible_triangle.dye_the_world.data.hangingCanvasSignRecipes
-import com.possible_triangle.dye_the_world.extensions.germanLang
-import com.possible_triangle.dye_the_world.extensions.optionalTag
-import com.possible_triangle.dye_the_world.extensions.translation
-import com.possible_triangle.dye_the_world.extensions.validBlocks
-import com.possible_triangle.dye_the_world.extensions.withItem
+import com.possible_triangle.dye_the_world.dyesFor
+import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.germanTranslation
 import com.possible_triangle.dye_the_world.`object`.block.DyedCeilingHangingCanvasSignBlock
 import com.possible_triangle.dye_the_world.`object`.block.DyedStandingCanvasSignBlock
 import com.possible_triangle.dye_the_world.`object`.block.DyedWallCanvasSignBlock
@@ -39,7 +37,7 @@ object DyedDelight {
 
     val CANVAS_WALL_SIGNS = dyesFor(FARMERS_DELIGHT).associateWith { dye ->
         REGISTRATE.`object`("${dye}_canvas_wall_sign")
-            .block { DyedWallCanvasSignBlock(it, dye) }
+            .dyedBlock(dye, FARMERS_DELIGHT) { DyedWallCanvasSignBlock(it, dye) }
             .initialProperties { ModBlocks.RED_CANVAS_WALL_SIGN.get() }
             .lang { it.descriptionId + ".wall" }
             .canvasSignBlockstate()
@@ -48,14 +46,14 @@ object DyedDelight {
 
     val CANVAS_SIGNS = dyesFor(FARMERS_DELIGHT).associateWith { dye ->
         REGISTRATE.`object`("${dye}_canvas_sign")
-            .block { DyedStandingCanvasSignBlock(dye) }
+            .dyedBlock(dye, FARMERS_DELIGHT) { DyedStandingCanvasSignBlock(dye) }
             .initialProperties { ModBlocks.RED_CANVAS_SIGN.get() }
             .lang("${dye.translation} Canvas Sign")
             .germanLang("${dye.germanTranslation(Genus.I)} Canvas Schild")
             .canvasSignBlockstate()
             .withItem(dye.signItem(CANVAS_WALL_SIGNS)) {
                 optionalTag(ModTags.CANVAS_SIGNS)
-                canvasSignRecipes(dye)
+                canvasSignRecipes()
                 canvasSignItemModel()
                 tab(TAB)
             }
@@ -71,7 +69,7 @@ object DyedDelight {
 
     val HANGING_CANVAS_WALL_SIGNS = dyesFor(FARMERS_DELIGHT).associateWith { dye ->
         REGISTRATE.`object`("${dye}_wall_hanging_canvas_sign")
-            .block { DyedWallHangingCanvasSignBlock(it, dye) }
+            .dyedBlock(dye, FARMERS_DELIGHT) { DyedWallHangingCanvasSignBlock(it, dye) }
             .initialProperties { ModBlocks.RED_HANGING_CANVAS_WALL_SIGN.get() }
             .lang { it.descriptionId + ".wall" }
             .canvasSignBlockstate()
@@ -80,13 +78,13 @@ object DyedDelight {
 
     val HANGING_CANVAS_SIGNS = dyesFor(FARMERS_DELIGHT).associateWith { dye ->
         REGISTRATE.`object`("${dye}_hanging_canvas_sign")
-            .block { DyedCeilingHangingCanvasSignBlock(dye) }
+            .dyedBlock(dye, FARMERS_DELIGHT) { DyedCeilingHangingCanvasSignBlock(dye) }
             .initialProperties { ModBlocks.RED_HANGING_CANVAS_SIGN.get() }
             .lang("${dye.translation} Hanging Canvas Sign")
             .canvasSignBlockstate()
             .withItem(dye.signItem(HANGING_CANVAS_WALL_SIGNS)) {
                 optionalTag(ModTags.HANGING_CANVAS_SIGNS)
-                hangingCanvasSignRecipes(dye)
+                hangingCanvasSignRecipes()
                 canvasSignItemModel()
                 tab(TAB)
             }

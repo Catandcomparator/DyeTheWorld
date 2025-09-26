@@ -1,11 +1,5 @@
 {
   "type": "minecraft:block",
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "quark"
-    }
-  ],
   "pools": [
     {
       "bonus_rolls": 0.0,

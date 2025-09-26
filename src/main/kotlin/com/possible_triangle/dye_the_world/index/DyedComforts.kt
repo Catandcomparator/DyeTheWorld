@@ -6,12 +6,14 @@ import com.illusivesoulworks.comforts.common.block.SleepingBagBlock
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.COMFORTS
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.BedBlock
@@ -27,11 +29,11 @@ object DyedComforts {
 
     val SLEEPING_BAGS = dyesFor(COMFORTS).associateWith { dye ->
         REGISTRATE.`object`("sleeping_bag_${dye}")
-            .block { SleepingBagBlock(dye) }
+            .dyedBlock(dye) { SleepingBagBlock(dye) }
             .lang("${dye.translation} Sleeping Bag")
             .germanLang("${dye.germanTranslation(Genus.M)} Schlafsack")
             .withItem {
-                sleepingBagRecipe(dye)
+                sleepingBagRecipe()
             }
             .clothTransforms()
             .register()
@@ -39,11 +41,11 @@ object DyedComforts {
 
     val HAMMOCKS = dyesFor(COMFORTS).associateWith { dye ->
         REGISTRATE.`object`("hammock_${dye}")
-            .block { HammockBlock(dye) }
+            .dyedBlock(dye) { HammockBlock(dye) }
             .lang("${dye.translation} Hammock")
             .germanLang("${dye.germanTranslation(Genus.M)} Hängemattenstoff")
             .withItem {
-                hammockRecipe(dye)
+                hammockRecipe()
             }
             .clothTransforms()
             .register()
@@ -58,7 +60,7 @@ object DyedComforts {
 
 private fun <T : BaseComfortsBlock, P> BlockBuilder<T, P>.clothTransforms() = apply {
     clothBlockState()
-    loot(COMFORTS) { t, b ->
+    loot { t, b ->
         val isHead = matchesState(b) {
             hasProperty(BedBlock.PART, BedPart.HEAD)
         }
@@ -84,7 +86,7 @@ private fun <T : BaseComfortsBlock, P> BlockBuilder<T, P>.clothBlockState() = bl
     provider.simpleBlock(context.get(), model)
 }
 
-private fun <T : Item, P> ItemBuilder<T, P>.hammockRecipe(dye: DyeColor) = recipe(COMFORTS) { context, provider ->
+private fun <T : Item, P> ItemBuilder<T, P>.hammockRecipe() = recipe { context, provider ->
     val wool = dye.blockOf("wool")
     ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get())
         .pattern("S/S")
@@ -102,7 +104,7 @@ private fun <T : Item, P> ItemBuilder<T, P>.hammockRecipe(dye: DyeColor) = recip
     }
 }
 
-private fun <T : Item, P> ItemBuilder<T, P>.sleepingBagRecipe(dye: DyeColor) = recipe(COMFORTS) { context, provider ->
+private fun <T : Item, P> ItemBuilder<T, P>.sleepingBagRecipe() = recipe { context, provider ->
     val wool = dye.blockOf("wool")
     ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get())
         .pattern("###")

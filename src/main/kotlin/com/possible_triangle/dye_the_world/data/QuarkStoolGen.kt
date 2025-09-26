@@ -3,11 +3,11 @@ package com.possible_triangle.dye_the_world.data
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.QUARK
 import com.possible_triangle.dye_the_world.blockOf
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.createVariant
-import com.possible_triangle.dye_the_world.extensions.recipe
 import com.possible_triangle.dye_the_world.index.DyedQuark
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.possible_triangle.dye_the_world.withCondition
 import com.starfish_studios.another_furniture.registry.AFBlocks
 import com.tterrag.registrate.builders.BlockBuilder
@@ -16,12 +16,11 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.tags.ItemTags
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraftforge.client.model.generators.ConfiguredModel
 import org.violetmoon.quark.content.building.block.StoolBlock
 
-fun <T : Item, P> ItemBuilder<T, P>.quarkStoolRecipe(dye: DyeColor) = recipe(QUARK) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.quarkStoolRecipe() = recipe { context, provider ->
     provider.withCondition(DyedQuark.flagCondition("stools")) {
         val wool = dye.blockOf("wool")
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get())
@@ -39,7 +38,7 @@ fun <T : Item, P> ItemBuilder<T, P>.quarkStoolRecipe(dye: DyeColor) = recipe(QUA
     }
 }
 
-fun <T : StoolBlock, P> BlockBuilder<T, P>.quarkStoolBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <T : StoolBlock, P> BlockBuilder<T, P>.quarkStoolBlockstate() = blockstate { context, provider ->
     provider.createVariant(context) { state ->
         val big = state.getValue(StoolBlock.BIG)
 

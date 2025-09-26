@@ -1,8 +1,8 @@
 package com.possible_triangle.dye_the_world.data
 
-import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.namespace
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.util.nullness.NonNullSupplier
@@ -23,7 +23,7 @@ fun DyedRegistrate.createSlabs(
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<SlabBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
     `object`("${dye}_${name.path}_slab")
-        .block(::SlabBlock)
+        .dyedBlock(dye, name.namespace, ::SlabBlock)
         .initialProperties(base)
         .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
         .optionalTag(BlockTags.SLABS)
@@ -31,14 +31,14 @@ fun DyedRegistrate.createSlabs(
             val texture = dye.namespace.createId("block/${dye}_${name.path}")
             p.slabBlock(c.get(), dye.namespace.createId("block/${dye}_${name.path}"), texture)
         }
-        .loot(name.namespace) { c, p ->
+        .loot { c, p ->
             c.add(p, c.createSlabItemTable(p))
         }
         .withItem {
             tab(CreativeModeTabs.COLORED_BLOCKS)
             tab(CreativeModeTabs.BUILDING_BLOCKS)
             optionalTag(ItemTags.SLABS)
-            recipe(name.namespace) { c, p -> p.slab(base.asIngredient(), BUILDING_BLOCKS, c, null, true) }
+            recipe { c, p -> p.slab(base.asIngredient(), BUILDING_BLOCKS, c, null, true) }
             modifyItem(dye)
         }
         .apply { modifyBlock(dye) }

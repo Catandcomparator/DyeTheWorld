@@ -3,11 +3,11 @@ package com.possible_triangle.dye_the_world.data
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.ANOTHER_FURNITURE
 import com.possible_triangle.dye_the_world.blockOf
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.createVariant
-import com.possible_triangle.dye_the_world.extensions.recipe
 import com.possible_triangle.dye_the_world.extensions.yRot
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.starfish_studios.another_furniture.block.SofaBlock
 import com.starfish_studios.another_furniture.block.properties.SofaType
 import com.starfish_studios.another_furniture.registry.AFBlocks
@@ -18,7 +18,6 @@ import net.minecraft.core.Direction
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.tags.ItemTags
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
 import net.minecraft.world.level.block.Block
@@ -26,7 +25,7 @@ import net.minecraftforge.client.model.generators.BlockModelBuilder
 import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.client.model.generators.ModelBuilder
 
-fun <T : Item, P> ItemBuilder<T, P>.sofaRecipes(dye: DyeColor) = recipe(ANOTHER_FURNITURE) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.sofaRecipes() = recipe { context, provider ->
     val wool = dye.blockOf("wool")
     ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 3)
         .group("sofas")
@@ -44,7 +43,7 @@ fun <T : Item, P> ItemBuilder<T, P>.sofaRecipes(dye: DyeColor) = recipe(ANOTHER_
     }
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.sofaBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <T : Block, P> BlockBuilder<T, P>.sofaBlockstate() = blockstate { context, provider ->
     fun texture(suffix: String) = Constants.MOD_ID.createId("block/$ANOTHER_FURNITURE/sofa/${dye}_$suffix")
 
     fun sofaModel(suffix: String? = null): BlockModelBuilder {

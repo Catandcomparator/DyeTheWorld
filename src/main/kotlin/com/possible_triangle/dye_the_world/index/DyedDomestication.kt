@@ -23,7 +23,7 @@ object DyedDomestication {
 
     val PET_BEDS = dyesFor(DOMESTICATION_INNOVATION).associateWith { dye ->
         REGISTRATE.`object`("pet_bed_${dye}")
-            .block { PetBedBlock(dye.serializedName, dye) }
+            .dyedBlock(dye, DOMESTICATION_INNOVATION) { PetBedBlock(dye.serializedName, dye) }
             .properties { it.strength(0.8F) }
             .properties { it.pushReaction(PushReaction.BLOCK) }
             .properties { it.noOcclusion() }
@@ -35,7 +35,7 @@ object DyedDomestication {
             .withItem {
                 tab(TAB)
                 optionalTag(DyedTags.Items.PET_BEDS)
-                petBedRecipe(dye)
+                petBedRecipe()
             }
             .register()
     }

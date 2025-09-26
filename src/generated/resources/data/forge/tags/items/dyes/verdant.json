@@ -1,10 +1,6 @@
 {
   "values": [
     {
-      "id": "dye_depot:verdant_dye",
-      "required": false
-    },
-    {
       "id": "chalk:verdant_chalk",
       "required": false
     }

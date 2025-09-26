@@ -1,9 +1,13 @@
 package com.possible_triangle.dye_the_world.index
 
-import com.possible_triangle.dye_the_world.*
+import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.ALEXS_CAVES
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
+import com.possible_triangle.dye_the_world.Genus
+import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.germanTranslation
+import com.possible_triangle.dye_the_world.registrate.shapedDyeingRecipe
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
@@ -22,7 +26,7 @@ object DyedCaves {
 
     val RADON_LAMPS = dyesFor(ALEXS_CAVES).associateWith { dye ->
         REGISTRATE.`object`("radon_lamp_${dye}")
-            .block(::Block)
+            .dyedBlock(dye, ALEXS_CAVES, ::Block)
             .properties { it.strength(2.0f, 11.0f) }
             .properties { it.requiresCorrectToolForDrops() }
             .properties { it.lightLevel { 15 } }
@@ -37,7 +41,7 @@ object DyedCaves {
             .withItem {
                 tab(TOXIC_TAB)
                 optionalTag(DyedTags.Items.RADON_LAMPS)
-                recipe(ALEXS_CAVES) { context, provider ->
+                recipe { context, provider ->
                     val radonBottle = BuiltInRegistries.ITEM.getOrThrow(ALEXS_CAVES.createId("radon_bottle"))
 
                     ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 4)

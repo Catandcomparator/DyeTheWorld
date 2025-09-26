@@ -7,6 +7,7 @@ import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.ifLoaded
 import com.possible_triangle.dye_the_world.extensions.isLoaded
 import com.possible_triangle.dye_the_world.index.*
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import net.minecraftforge.data.loading.DatagenModLoader
 import net.minecraftforge.fml.common.Mod
 

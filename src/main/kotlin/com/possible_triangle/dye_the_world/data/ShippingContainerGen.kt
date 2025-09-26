@@ -2,12 +2,12 @@ package com.possible_triangle.dye_the_world.data
 
 import com.github.talrey.createdeco.blocks.ShippingContainerBlock
 import com.possible_triangle.dye_the_world.Constants.Mods.CREATE_DECO
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.createVariant
 import com.possible_triangle.dye_the_world.extensions.defineUnlocking
-import com.possible_triangle.dye_the_world.extensions.recipe
 import com.possible_triangle.dye_the_world.index.DyedTags
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.simibubi.create.AllBlocks
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
@@ -15,7 +15,6 @@ import net.minecraft.core.Direction
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Blocks
 import net.minecraftforge.client.model.generators.ConfiguredModel
@@ -45,7 +44,7 @@ fun <T : ShippingContainerBlock, P> BlockBuilder<T, P>.shippingContainerBlocksta
         }
     }
 
-fun <T : Item, P> ItemBuilder<T, P>.shippingContainerRecipe(dye: DyeColor) = recipe(CREATE_DECO) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.shippingContainerRecipe() = recipe { context, provider ->
     ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, context.get())
         .pattern("CS")
         .pattern("SB")

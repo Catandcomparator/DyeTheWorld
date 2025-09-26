@@ -4,13 +4,7 @@ import com.google.common.base.Suppliers.memoize
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.CLAYWORKS
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
-import com.possible_triangle.dye_the_world.data.createPotItem
-import com.possible_triangle.dye_the_world.data.createSlabs
-import com.possible_triangle.dye_the_world.data.createStairs
-import com.possible_triangle.dye_the_world.data.createWalls
-import com.possible_triangle.dye_the_world.data.potBlockstate
-import com.possible_triangle.dye_the_world.data.potItemModel
-import com.possible_triangle.dye_the_world.data.potLoot
+import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.extensions.*
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS
@@ -30,7 +24,7 @@ object DyedClayworks {
 
     val TERRACOTTA_BRICKS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_terracotta_bricks")
-            .block(::Block)
+            .dyedBlock(dye, CLAYWORKS, ::Block)
             .initialProperties { dye.blockOf("terracotta") }
             .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
             .blockstate { c, p ->
@@ -43,7 +37,7 @@ object DyedClayworks {
             .withItem {
                 tab(CreativeModeTabs.COLORED_BLOCKS)
                 tab(CreativeModeTabs.BUILDING_BLOCKS)
-                recipe(CLAYWORKS) { c, p ->
+                recipe { c, p ->
                     p.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, c)
                 }
             }
@@ -62,7 +56,7 @@ object DyedClayworks {
             }
         },
         modifyItem = { dye ->
-            recipe(CLAYWORKS) { context, provider ->
+            recipe { context, provider ->
                 provider.slab(TERRACOTTA_BRICKS[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                 provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context, 2)
             }
@@ -80,7 +74,7 @@ object DyedClayworks {
             }
         },
         modifyItem = { dye ->
-            recipe(CLAYWORKS) { context, provider ->
+            recipe { context, provider ->
                 provider.stairs(TERRACOTTA_BRICKS[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                 provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context)
             }
@@ -98,7 +92,7 @@ object DyedClayworks {
             }
         },
         modifyItem = { dye ->
-            recipe(CLAYWORKS) { context, provider ->
+            recipe { context, provider ->
                 provider.wall(TERRACOTTA_BRICKS[dye]!!.asIngredient(), BUILDING_BLOCKS, context)
                 provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context)
             }
@@ -111,7 +105,7 @@ object DyedClayworks {
 
     val CHISELED_TERRACOTTA_BRICKS = DYES.associateWith { dye ->
         REGISTRATE.`object`("chiseled_${dye}_terracotta_bricks")
-            .block(::Block)
+            .dyedBlock(dye, CLAYWORKS, ::Block)
             .initialProperties { dye.blockOf("terracotta") }
             .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
             .blockstate { c, p ->
@@ -124,7 +118,7 @@ object DyedClayworks {
             .withItem {
                 tab(CreativeModeTabs.COLORED_BLOCKS)
                 tab(CreativeModeTabs.BUILDING_BLOCKS)
-                recipe(CLAYWORKS) { c, p ->
+                recipe { c, p ->
                     p.stonecutting(TERRACOTTA_BRICKS[dye]!!.asIngredient(), BUILDING_BLOCKS, c)
                     p.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, c)
 
@@ -154,11 +148,11 @@ object DyedClayworks {
 
     val DECORATED_POTS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_decorated_pot")
-            .block(::DecoratedPotBlock)
+            .dyedBlock(dye, CLAYWORKS, ::DecoratedPotBlock)
             .initialProperties { Blocks.DECORATED_POT }
             .properties { it.mapColor(dye) }
             .lang("${dye.translation} Decorated Pot")
-            .potBlockstate(dye)
+            .potBlockstate()
             .potLoot()
             .withItem(::createPotItem) {
                 properties { it.stacksTo(1) }

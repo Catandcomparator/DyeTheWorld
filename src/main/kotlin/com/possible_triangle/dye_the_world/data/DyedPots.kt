@@ -1,8 +1,7 @@
 package com.possible_triangle.dye_the_world.data
 
-import com.possible_triangle.dye_the_world.Constants
-import com.possible_triangle.dye_the_world.extensions.loot
 import com.possible_triangle.dye_the_world.namespace
+import com.possible_triangle.dye_the_world.registrate.dye
 import com.teamabnormals.blueprint.common.item.BEWLRBlockItem
 import com.teamabnormals.clayworks.client.DecoratedPotBlockEntityWithoutLevelRenderer
 import com.teamabnormals.clayworks.core.data.server.ClayworksLootTableProvider
@@ -10,14 +9,13 @@ import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import net.minecraft.core.BlockPos
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity
 import net.minecraft.world.level.storage.loot.LootTable
 import java.util.concurrent.Callable
 
-fun <T : Block, P> BlockBuilder<T, P>.potLoot() = loot(Constants.Mods.CLAYWORKS) { tables, block ->
+fun <T : Block, P> BlockBuilder<T, P>.potLoot() = loot { tables, block ->
     val table = LootTable.lootTable()
         .withPool(ClayworksLootTableProvider.ClayworksBlockLoot.createDynamicTrimDropPool())
         .withPool(ClayworksLootTableProvider.ClayworksBlockLoot.createDecoratedPotPool(block))
@@ -36,7 +34,7 @@ fun createPotItem(block: Block, properties: Item.Properties) = BEWLRBlockItem(bl
     }
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.potBlockstate(dye: DyeColor) = blockstate { context, provider ->
+fun <T : Block, P> BlockBuilder<T, P>.potBlockstate() = blockstate { context, provider ->
     val model = provider.models().getBuilder(context.name)
         .texture("particle", ResourceLocation(dye.namespace, "block/${dye}_terracotta"))
     provider.simpleBlock(context.get(), model)

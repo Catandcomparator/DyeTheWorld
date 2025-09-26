@@ -3,13 +3,12 @@ package com.possible_triangle.dye_the_world.index
 import com.possible_triangle.dye_the_world.Constants.Mods.AMENDMENTS
 import com.possible_triangle.dye_the_world.Constants.Mods.SUPPLEMENTARIES
 import com.possible_triangle.dye_the_world.Constants.Mods.SUPPLEMENTARIES_SQUARED
-import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.dyesFor
-import com.possible_triangle.dye_the_world.extensions.loot
 import com.possible_triangle.dye_the_world.extensions.optionalTag
 import com.possible_triangle.dye_the_world.extensions.translation
 import com.possible_triangle.dye_the_world.extensions.withItem
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import net.mehvahdjukaar.supplementaries.common.block.blocks.AwningBlock
 import net.mehvahdjukaar.supplementaries.common.block.blocks.SackBlock
 import net.minecraft.resources.ResourceLocation
@@ -26,10 +25,10 @@ object DyedSupplementaries {
 
     val SACKS = DYES.associateWith { dye ->
         SQUARED_REGISTRATE.`object`("sack_${dye}")
-            .block(::SackBlock)
+            .dyedBlock(dye, ::SackBlock)
             .lang("${dye.translation} Sack")
-            .sackBlockstate(dye)
-            .loot(SUPPLEMENTARIES) { t, b -> t.add(b, t.createShulkerBoxDrop(b)) }
+            .sackBlockstate()
+            .loot { t, b -> t.add(b, t.createShulkerBoxDrop(b)) }
             .withItem {
                 sackItemModel()
             }
@@ -38,7 +37,7 @@ object DyedSupplementaries {
 
     val CEILING_BANNERS = DYES.associateWith { dye ->
         REGISTRATE_AMENDMENTS.`object`("ceiling_banner_${dye}")
-            .block(::Block)
+            .dyedBlock(dye, ::Block)
             .lang("${dye.translation} Banner")
             .optionalTag(DyedTags.Blocks.CEILING_BANNERS)
             .blockstate { context, provider ->
@@ -50,10 +49,10 @@ object DyedSupplementaries {
 
     val BUNTINGS = DYES.associateWith { dye ->
         REGISTRATE.`object`("bunting_$dye")
-            .item(::Item)
+            .dyedItem(dye, ::Item)
             .lang("${dye.translation} Bunting")
-            .dyedBuntingItemModel(dye)
-            .dyedBuntingRecipe(dye)
+            .dyedBuntingItemModel()
+            .dyedBuntingRecipe()
             .register()
     }
 
@@ -64,16 +63,16 @@ object DyedSupplementaries {
 
     val AWNINGS = DYES.associateWith { dye ->
         REGISTRATE.`object`("awning_$dye")
-            .block { AwningBlock(dye, it) }
+            .dyedBlock(dye) { AwningBlock(dye, it) }
             .lang("${dye.translation} Awning")
             .optionalTag(DyedTags.Blocks.MINEABLE_SHEAR)
             .optionalTag(DyedTags.Blocks.BOUNCY_BLOCKS)
             .optionalTag(DyedTags.Blocks.AWNINGS)
-            .awningBlockstate(dye)
+            .awningBlockstate()
             .withItem {
                 optionalTag(DyedTags.Items.AWNINGS)
-                awningItemModel(dye)
-                awningRecipe(dye)
+                awningItemModel()
+                awningRecipe()
             }
             .register()
     }

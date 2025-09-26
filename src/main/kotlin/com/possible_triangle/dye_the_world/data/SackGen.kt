@@ -3,15 +3,15 @@ package com.possible_triangle.dye_the_world.data
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.createVariant
+import com.possible_triangle.dye_the_world.registrate.dye
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import net.mehvahdjukaar.supplementaries.common.block.blocks.SackBlock
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import net.minecraftforge.client.model.generators.ConfiguredModel
 
-fun <T : Block, P> BlockBuilder<T, P>.sackBlockstate(dye: DyeColor) =
+fun <T : Block, P> BlockBuilder<T, P>.sackBlockstate() =
     blockstate { context, provider ->
         fun texture(suffix: String) =
             Constants.MOD_ID.createId("block/${Constants.Mods.SUPPLEMENTARIES_SQUARED}/sack_${dye}_$suffix")

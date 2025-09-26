@@ -2,23 +2,22 @@ package com.possible_triangle.dye_the_world.data
 
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.FARMERS_DELIGHT
-import com.possible_triangle.dye_the_world.dyeingRecipe
 import com.possible_triangle.dye_the_world.extensions.createId
-import com.possible_triangle.dye_the_world.extensions.recipe
+import com.possible_triangle.dye_the_world.registrate.dye
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 import vectorwing.farmersdelight.common.tag.ModTags
 
-fun <T : Item, P> ItemBuilder<T, P>.canvasSignRecipes(dye: DyeColor) = recipe(FARMERS_DELIGHT) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.canvasSignRecipes() = recipe { context, provider ->
     provider.dyeingRecipe(dye, ModTags.CANVAS_SIGNS, context) {
         group("canvas_sign")
     }
 }
 
-fun <T : Item, P> ItemBuilder<T, P>.hangingCanvasSignRecipes(dye: DyeColor) = recipe(FARMERS_DELIGHT) { context, provider ->
+fun <T : Item, P> ItemBuilder<T, P>.hangingCanvasSignRecipes() = recipe { context, provider ->
     provider.dyeingRecipe(dye, ModTags.HANGING_CANVAS_SIGNS, context) {
         group("hanging_canvas_sign")
     }

@@ -1,8 +1,12 @@
 package com.possible_triangle.dye_the_world.index
 
-import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.WAYSTONES
+import com.possible_triangle.dye_the_world.Genus
+import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.germanTranslation
+import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.tterrag.registrate.providers.ProviderType
 import net.blay09.mods.waystones.block.SharestoneBlock
@@ -29,7 +33,7 @@ object DyedWaystones {
 
     val SHARESTONES = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_sharestone")
-            .block { SharestoneBlock(it, dye) }
+            .dyedBlock(dye) { SharestoneBlock(it, dye) }
             .lang("${dye.translation} Sharestone")
             .germanLang("${dye.germanTranslation(Genus.M)} Teilstein")
             .addMiscData(ProviderType.LANG) {
@@ -48,7 +52,7 @@ object DyedWaystones {
             .optionalTag(ModBlockTags.SHARESTONES)
             .optionalTag(ModBlockTags.IS_TELEPORT_TARGET)
             .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .loot(WAYSTONES) { tables, block ->
+            .loot { tables, block ->
                 val hasSilktouch = MatchTool.toolMatches(
                     ItemPredicate.Builder.item().hasEnchantment(
                         EnchantmentPredicate(
@@ -93,7 +97,7 @@ object DyedWaystones {
             .withItem {
                 optionalTag(ModItemTags.DYED_SHARESTONES)
                 optionalTag(ModItemTags.SHARESTONES)
-                recipe(WAYSTONES) { c, p -> p.dyeingRecipe(dye, ModItemTags.SHARESTONES, c) }
+                recipe { c, p -> p.dyeingRecipe(dye, ModItemTags.SHARESTONES, c) }
                 model { context, provider ->
                     provider.withExistingParent(context.name, WAYSTONES.createId("item/scoped_sharestone"))
                 }

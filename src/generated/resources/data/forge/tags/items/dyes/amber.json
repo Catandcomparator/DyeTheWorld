@@ -1,10 +1,6 @@
 {
   "values": [
     {
-      "id": "dye_depot:amber_dye",
-      "required": false
-    },
-    {
       "id": "chalk:amber_chalk",
       "required": false
     }

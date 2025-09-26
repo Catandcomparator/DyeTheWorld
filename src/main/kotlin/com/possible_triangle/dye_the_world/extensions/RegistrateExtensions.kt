@@ -2,14 +2,10 @@ package com.possible_triangle.dye_the_world.extensions
 
 import com.possible_triangle.dye_the_world.ForgeEntrypoint
 import com.possible_triangle.dye_the_world.data.CustomRegistrateLangProvider
-import com.possible_triangle.dye_the_world.withNamespace
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.BlockEntityBuilder
 import com.tterrag.registrate.builders.ItemBuilder
-import com.tterrag.registrate.providers.DataGenContext
 import com.tterrag.registrate.providers.ProviderType
-import com.tterrag.registrate.providers.RegistrateRecipeProvider
-import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables
 import com.tterrag.registrate.util.nullness.NonNullSupplier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.TagKey
@@ -46,7 +42,7 @@ fun <T : BlockEntity, P> BlockEntityBuilder<T, P>.validBlocks(
     return validBlocks(*values.toTypedArray())
 }
 
-val DE_LANG = CustomRegistrateLangProvider.Companion.providerType("de_de")
+val DE_LANG = CustomRegistrateLangProvider.providerType("de_de")
 
 fun <T : Item, P> ItemBuilder<T, P>.germanLang(translation: String) = setData(DE_LANG) { context, provider ->
     provider.add(context.get(), translation)
@@ -54,24 +50,6 @@ fun <T : Item, P> ItemBuilder<T, P>.germanLang(translation: String) = setData(DE
 
 fun <T : Block, P> BlockBuilder<T, P>.germanLang(translation: String) = setData(DE_LANG) { context, provider ->
     provider.add(context.get(), translation)
-}
-
-fun <T : Item, P> ItemBuilder<T, P>.recipe(
-    namespace: String,
-    factory: (DataGenContext<Item, T>, RegistrateRecipeProvider) -> Unit
-) = recipe { context, provider ->
-    provider.withNamespace(namespace) {
-        factory(context, provider)
-    }
-}
-
-fun <T : Block, P> BlockBuilder<T, P>.loot(
-    namespace: String,
-    factory: (RegistrateBlockLootTables, T) -> Unit
-) = loot { provider, entry ->
-    provider.withNamespace(namespace) {
-        factory(provider, entry)
-    }
 }
 
 fun <T : Item, P> ItemBuilder<T, P>.optionalTab(vararg keys: ResourceKey<CreativeModeTab>, condition: () -> Boolean) = apply {

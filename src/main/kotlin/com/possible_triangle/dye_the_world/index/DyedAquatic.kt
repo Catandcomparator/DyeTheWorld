@@ -1,13 +1,17 @@
 package com.possible_triangle.dye_the_world.index
 
-import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.UPGRADE_AQUATIC
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
+import com.possible_triangle.dye_the_world.VANILLA_DYES
 import com.possible_triangle.dye_the_world.data.bedrollBlockstate
 import com.possible_triangle.dye_the_world.data.bedrollItemModel
 import com.possible_triangle.dye_the_world.data.bedrollLoot
 import com.possible_triangle.dye_the_world.data.bedrollRecipe
+import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.registrate.cleaningRecipe
+import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
+import com.possible_triangle.dye_the_world.withNamespace
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.teamabnormals.upgrade_aquatic.core.other.tags.UABlockTags
 import com.teamabnormals.upgrade_aquatic.core.other.tags.UAItemTags
@@ -18,21 +22,21 @@ import net.minecraft.world.item.CreativeModeTabs
 
 object DyedAquatic {
 
-    val PET_BEDS = dyesFor(UPGRADE_AQUATIC).associateWith { dye ->
+    val BEDROLLS = dyesFor(UPGRADE_AQUATIC).associateWith { dye ->
         REGISTRATE.`object`("${dye}_bedroll")
-            .block { BedrollBlock(dye, it) }
+            .dyedBlock(dye, UPGRADE_AQUATIC) { BedrollBlock(dye, it) }
             .initialProperties { UABlocks.BEDROLL.get() }
             .properties { it.mapColor(dye) }
             .lang("${dye.translation} Bedroll")
-            .bedrollBlockstate(dye)
+            .bedrollBlockstate()
             .bedrollLoot()
             .optionalTag(UABlockTags.BEDROLLS)
             .withItem {
                 tab(CreativeModeTabs.FUNCTIONAL_BLOCKS)
                 tab(CreativeModeTabs.COLORED_BLOCKS)
                 optionalTag(UAItemTags.BEDROLLS)
-                bedrollRecipe(dye)
-                bedrollItemModel(dye)
+                bedrollRecipe()
+                bedrollItemModel()
             }
             .register()
     }

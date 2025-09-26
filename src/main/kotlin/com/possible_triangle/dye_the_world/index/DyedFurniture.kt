@@ -4,7 +4,6 @@ import com.possible_triangle.dye_the_world.Constants.Mods.ANOTHER_FURNITURE
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.dyesFor
-import com.possible_triangle.dye_the_world.extensions.loot
 import com.possible_triangle.dye_the_world.extensions.optionalTag
 import com.possible_triangle.dye_the_world.extensions.translation
 import com.possible_triangle.dye_the_world.extensions.withItem
@@ -23,12 +22,12 @@ object DyedFurniture {
 
     val SOFAS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_sofa")
-            .block(::SofaBlock)
+            .dyedBlock(dye, ANOTHER_FURNITURE, ::SofaBlock)
             .initialProperties { AFBlocks.RED_SOFA.get() }
             .optionalTag(AFBlockTags.SOFAS)
-            .sofaBlockstate(dye)
+            .sofaBlockstate()
             .withItem {
-                sofaRecipes(dye)
+                sofaRecipes()
                 optionalTag(AFItemTags.SOFAS)
                 tab(TAB)
             }
@@ -37,12 +36,12 @@ object DyedFurniture {
 
     val STOOLS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_stool")
-            .block(::StoolBlock)
+            .dyedBlock(dye, ANOTHER_FURNITURE, ::StoolBlock)
             .initialProperties { AFBlocks.RED_STOOL.get() }
             .optionalTag(AFBlockTags.STOOLS)
-            .stoolBlockstate(dye)
+            .stoolBlockstate()
             .withItem {
-                stoolRecipes(dye)
+                stoolRecipes()
                 optionalTag(AFItemTags.STOOLS)
                 tab(TAB)
             }
@@ -51,12 +50,12 @@ object DyedFurniture {
 
     val TALL_STOOLS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_tall_stool")
-            .block(::TallStoolBlock)
+            .dyedBlock(dye, ANOTHER_FURNITURE, ::TallStoolBlock)
             .initialProperties { AFBlocks.RED_TALL_STOOL.get() }
             .optionalTag(AFBlockTags.TALL_STOOLS)
-            .tallStoolBlockstate(dye)
+            .tallStoolBlockstate()
             .withItem {
-                tallStoolRecipes(dye)
+                tallStoolRecipes()
                 optionalTag(AFItemTags.TALL_STOOLS)
                 tab(TAB)
             }
@@ -65,14 +64,14 @@ object DyedFurniture {
 
     val CURTAINS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_curtain")
-            .block(::CurtainBlock)
+            .dyedBlock(dye, ANOTHER_FURNITURE, ::CurtainBlock)
             .initialProperties { AFBlocks.RED_CURTAIN.get() }
             .optionalTag(AFBlockTags.CURTAINS)
-            .curtainBlockstate(dye)
+            .curtainBlockstate()
             .curtainLoot()
             .withItem {
-                curtainRecipes(dye)
-                curtainItemModel(dye)
+                curtainRecipes()
+                curtainItemModel()
                 optionalTag(AFItemTags.CURTAINS)
                 tab(TAB)
             }
@@ -81,13 +80,13 @@ object DyedFurniture {
 
     val LAMPS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_lamp")
-            .block { LampBlock(dye, it) }
+            .dyedBlock(dye, ANOTHER_FURNITURE) { LampBlock(dye, it) }
             .initialProperties { AFBlocks.RED_LAMP.get() }
             .optionalTag(AFBlockTags.LAMPS)
-            .lampBlockstate(dye)
+            .lampBlockstate()
             .withItem {
-                lampRecipes(dye)
-                lampItemModel(dye)
+                lampRecipes()
+                lampItemModel()
                 optionalTag(AFItemTags.LAMPS)
                 tab(TAB)
             }
@@ -96,11 +95,11 @@ object DyedFurniture {
 
     val LAMPS_CONNECTORS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_lamp_connector")
-            .block { LampConnectorBlock(dye, it) }
+            .dyedBlock(dye, ANOTHER_FURNITURE) { LampConnectorBlock(dye, it) }
             .lang("${dye.translation} Lamp")
-            .loot(ANOTHER_FURNITURE) { t, b -> t.dropOther(b, LAMPS[dye]!!.get()) }
+            .loot { t, b -> t.dropOther(b, LAMPS[dye]!!.get()) }
             .initialProperties { AFBlocks.RED_LAMP_CONNECTOR.get() }
-            .lampConnectorBlockstate(dye)
+            .lampConnectorBlockstate()
             .register()
     }
 
