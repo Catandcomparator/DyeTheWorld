@@ -3,12 +3,11 @@ package com.possible_triangle.dye_the_world.mixins;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.possible_triangle.dye_the_world.Dyes;
+import java.util.stream.Stream;
 import net.minecraft.world.item.DyeColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.violetmoon.quark.integration.jei.QuarkJeiPlugin;
-
-import java.util.stream.Stream;
 
 @Mixin(value = QuarkJeiPlugin.class, remap = false)
 public class QuarkJeiPluginMixin {
