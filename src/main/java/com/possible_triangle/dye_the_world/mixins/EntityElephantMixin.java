@@ -23,7 +23,7 @@ public abstract class EntityElephantMixin {
     public Item overwriteCarpetLayer(Item original) {
         var dye = getColor();
         if(dye == null || dye.getId() < 16) return original;
-        return AlexsMobsCompat.INSTANCE.getCarpet(dye);
+        return AlexsMobsCompat.getCarpet(dye);
     }
 
 }

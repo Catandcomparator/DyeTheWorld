@@ -38,7 +38,7 @@ public class LayerElephantOverlaysMixin {
     )
     public RenderType overwriteCarpetLayer(ResourceLocation texture, Operation<RenderType> original, @Local DyeColor dye) {
         if (dye == null || dye.getId() < 16) return original.call(texture);
-        return original.call(AlexsMobsCompat.INSTANCE.getDecorTexture(dye));
+        return original.call(AlexsMobsCompat.getDecorTexture(dye));
     }
 
 }

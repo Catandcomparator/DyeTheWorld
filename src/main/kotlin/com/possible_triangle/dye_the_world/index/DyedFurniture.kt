@@ -78,6 +78,7 @@ object DyedFurniture {
             .register()
     }
 
+    @JvmField
     val LAMPS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_lamp")
             .dyedBlock(dye, ANOTHER_FURNITURE) { LampBlock(dye, it) }
@@ -93,6 +94,7 @@ object DyedFurniture {
             .register()
     }
 
+    @JvmField
     val LAMPS_CONNECTORS = dyesFor(ANOTHER_FURNITURE).associateWith { dye ->
         REGISTRATE.`object`("${dye}_lamp_connector")
             .dyedBlock(dye, ANOTHER_FURNITURE) { LampConnectorBlock(dye, it) }

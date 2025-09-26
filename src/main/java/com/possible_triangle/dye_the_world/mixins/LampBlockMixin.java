@@ -19,8 +19,7 @@ public class LampBlockMixin {
             require = 0
     )
     private static void getLampConnectorByColor(DyeColor dye, CallbackInfoReturnable<Block> cir) {
-        var values = DyedFurniture.INSTANCE.getLAMPS_CONNECTORS();
-        var instance = values.get(dye);
+        var instance = DyedFurniture.LAMPS_CONNECTORS.get(dye);
         if (instance != null) {
             cir.setReturnValue(instance.get());
         }

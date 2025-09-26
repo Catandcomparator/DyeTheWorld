@@ -19,8 +19,7 @@ public class ClayworksBlocksMixin {
             require = 0
     )
     private static void getPotFromDyeColor(DyeColor dye, CallbackInfoReturnable<Block> cir) {
-        var values = DyedClayworks.INSTANCE.getDECORATED_POTS();
-        var instance = values.get(dye);
+        var instance = DyedClayworks.DECORATED_POTS.get(dye);
         if (instance != null) {
             cir.setReturnValue(instance.get());
         }
@@ -33,7 +32,7 @@ public class ClayworksBlocksMixin {
             require = 0
     )
     private static void getDyeColorFromPot(Block block, CallbackInfoReturnable<DyeColor> cir) {
-        var dye = DyedClayworks.INSTANCE.dyeOf(block);
+        var dye = DyedClayworks.dyeOf(block);
         if (dye != null) {
             cir.setReturnValue(dye);
         }

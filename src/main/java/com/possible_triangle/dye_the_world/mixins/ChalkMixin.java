@@ -16,7 +16,7 @@ public class ChalkMixin {
             require = 0
     )
     private static void getPotFromDyeColor(CallbackInfo ci) {
-        ChalkCompat.INSTANCE.registerColors();
+        ChalkCompat.registerColors();
     }
 
 }

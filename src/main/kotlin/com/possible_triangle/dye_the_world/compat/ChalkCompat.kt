@@ -8,6 +8,7 @@ object ChalkCompat  {
 
     private val DYES = dyesFor(CHALK)
 
+    @JvmStatic
     fun registerColors() {
         DYES.forEach {
             ChalkColors.COLORS[it] = it.fireworkColor

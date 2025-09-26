@@ -146,6 +146,7 @@ object DyedClayworks {
         germanLang("${dye.germanTranslation(Genus.F)} Keramikmauer")
     })
 
+    @JvmField
     val DECORATED_POTS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_decorated_pot")
             .dyedBlock(dye, CLAYWORKS, ::DecoratedPotBlock)
@@ -167,6 +168,7 @@ object DyedClayworks {
         DECORATED_POTS.mapValues { it.value.get() }.inverse()
     }
 
+    @JvmStatic
     fun dyeOf(block: Block): DyeColor? = DYE_BY_DECORATED_POT.get()[block]
 
     fun register() {

@@ -9,12 +9,14 @@ import net.minecraft.world.item.DyeColor
 
 object AlexsMobsCompat {
 
+    @JvmStatic
     fun getCarpet(dye: DyeColor) = dye.blockOf("carpet").asItem()
 
     private val DECORS = dyesFor(ALEXS_MOBS).associateWith {
         Constants.MOD_ID.createId("textures/entity/$ALEXS_MOBS/elephant_decor/$it.png")
     }
 
+    @JvmStatic
     fun getDecorTexture(dye: DyeColor) = DECORS[dye]
 
 }

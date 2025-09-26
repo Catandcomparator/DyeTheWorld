@@ -17,7 +17,7 @@ public class ClayworksCompatMixin {
             require = 0
     )
     private static HashSet<Block> addDecoratedPotBlockEntityTypes(HashSet<Block> original) {
-        DyedClayworks.INSTANCE.getDECORATED_POTS().forEach((dye, pot) -> {
+        DyedClayworks.DECORATED_POTS.forEach((dye, pot) -> {
             original.add(pot.get());
         });
         return original;

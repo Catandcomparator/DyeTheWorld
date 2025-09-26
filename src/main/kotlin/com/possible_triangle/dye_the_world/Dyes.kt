@@ -1,3 +1,5 @@
+@file:JvmName("Dyes")
+
 package com.possible_triangle.dye_the_world
 
 import com.possible_triangle.dye_the_world.extensions.createId
@@ -8,6 +10,7 @@ import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
 
+@JvmField
 val DEPOT_DYES = listOf(
     "amber",
     "aqua",
@@ -27,6 +30,7 @@ val DEPOT_DYES = listOf(
     "verdant"
 )
 
+@JvmField
 val VANILLA_DYES = DyeColor.entries.subList(0, 16)
 
 //private val DYES = mapOf(
