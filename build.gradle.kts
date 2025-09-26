@@ -1,4 +1,3 @@
-
 import com.possible_triangle.gradle.features.publishing.DependencyBuilder
 import net.minecraftforge.gradle.common.util.MinecraftExtension
 import net.minecraftforge.gradle.userdev.jarjar.JarJarProjectExtension
@@ -42,7 +41,7 @@ val waystones_version: String by extra
 val balm_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.2.18")
+    id("com.possible-triangle.gradle") version ("0.0.0-dev")
 }
 
 withKotlin()
@@ -135,36 +134,36 @@ dependencies {
     modImplementation("com.simibubi.create:create-${mc_version}:${create_version}:slim") { isTransitive = false }
     modImplementation("net.createmod.ponder:Ponder-Forge-${mc_version}:${ponder_version}")
     modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${mc_version}:${flywheel_version}")
-    modImplementation("maven.modrinth:another-furniture:${another_furniture_version}")
-    modImplementation("maven.modrinth:comforts:${comforts_version}")
-    modImplementation("maven.modrinth:moonlight:${moonlight_lib_version}")
-    modImplementation("maven.modrinth:supplementaries:${supplementaries_version}")
-    modImplementation("maven.modrinth:supplementaries-squared:${supplementaries_squared_version}")
-    modImplementation("maven.modrinth:quark:${quark_version}")
-    modImplementation("maven.modrinth:zeta:${zeta_version}")
-    modImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
-    modImplementation("maven.modrinth:clayworks:${clayworks_version}")
-    modImplementation("maven.modrinth:upgrade-aquatic:${upgrade_aquatic_version}")
-    modImplementation("maven.modrinth:blueprint:${blueprint_version}")
-    modImplementation("maven.modrinth:chalk-mod:${chalk_version}")
-    modImplementation("maven.modrinth:create-deco:${create_deco_version}")
-    modImplementation("maven.modrinth:domestication-innovation:${domestication_innovation_version}")
-    modImplementation("maven.modrinth:alexs-caves:${alexs_caves_version}")
-    modImplementation("maven.modrinth:alexs-mobs:${alexs_mobs_version}")
-    modImplementation("maven.modrinth:waystones:${waystones_version}")
+    modImplementation(pack.modrinth.another.furniture)
+    modImplementation(pack.modrinth.comforts)
+    modImplementation(pack.modrinth.moonlight)
+    modImplementation(pack.modrinth.supplementaries)
+    modImplementation(pack.modrinth.supplementaries.squared)
+    modImplementation(pack.modrinth.quark)
+    modImplementation(pack.modrinth.zeta)
+    modImplementation(pack.modrinth.farmers.delight)
+    modImplementation(pack.modrinth.clayworks)
+    modImplementation(pack.modrinth.upgrade.aquatic)
+    modImplementation(pack.modrinth.blueprint)
+    modImplementation(pack.modrinth.chalk.mod)
+    modImplementation(pack.modrinth.create.deco)
+    modImplementation(pack.modrinth.domestication.innovation)
+    modImplementation(pack.modrinth.alexs.caves)
+    modImplementation(pack.modrinth.alexs.mobs)
+    modImplementation(pack.modrinth.waystones)
 
     modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${mc_version}:${flywheel_version}")
     modRuntimeOnly("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    modRuntimeOnly("maven.modrinth:jade:${jade_version}")
     modRuntimeOnly("com.ninni.dye_depot:dye_depot:${dye_depot_version}")
-    modRuntimeOnly("maven.modrinth:citadel:${citadel_version}")
-    modRuntimeOnly("maven.modrinth:create-steam-n-rails:${create_railways_version}")
-    modRuntimeOnly("maven.modrinth:interiors:${create_interiors_version}")
-    modRuntimeOnly("maven.modrinth:curios:${curios_version}")
-    modRuntimeOnly("maven.modrinth:ars-nouveau:${ars_nouveau_version}")
-    modRuntimeOnly("maven.modrinth:gallery:${gallery_version}")
-    modRuntimeOnly("maven.modrinth:more-concrete:${more_concrete_version}")
-    modRuntimeOnly("maven.modrinth:balm:${balm_version}")
+    modRuntimeOnly(pack.modrinth.jade)
+    modRuntimeOnly(pack.modrinth.citadel)
+    modRuntimeOnly(pack.modrinth.create.steam.n.rails)
+    modRuntimeOnly(pack.modrinth.interiors)
+    modRuntimeOnly(pack.modrinth.curios)
+    modRuntimeOnly(pack.modrinth.ars.nouveau)
+    modRuntimeOnly(pack.modrinth.gallery)
+    modRuntimeOnly(pack.modrinth.more.concrete)
+    modRuntimeOnly(pack.modrinth.balm)
 }
 
 tasks.processResources {
