@@ -37,10 +37,10 @@ fun DyedRegistrate.createLevers(
         .blockstate { c, p ->
             val texture = dye.namespace.createId("block/${dye}_${name.path}")
 
-            val off = p.models().withExistingParent(c.name, MORE_CONCRETE.createId("block/lever_model"))
+            // on and off being switched here is weird but correctly, it's also how it is for the vanilla lever ¯\_(ツ)_/¯
+            val off = p.models().withExistingParent("${c.name}_on", MORE_CONCRETE.createId("block/lever_model_on"))
                 .texture("base", texture)
-
-            val on = p.models().withExistingParent("${c.name}_on", MORE_CONCRETE.createId("block/lever_model_on"))
+            val on = p.models().withExistingParent(c.name, MORE_CONCRETE.createId("block/lever_model"))
                 .texture("base", texture)
 
 
@@ -54,13 +54,13 @@ fun DyedRegistrate.createLevers(
                 val rotX = when (face) {
                     AttachFace.FLOOR -> 0
                     AttachFace.WALL -> 90
-                    AttachFace.CEILING -> 1800
+                    AttachFace.CEILING -> 180
                 }
 
                 ConfiguredModel.builder()
                     .modelFile(model)
                     .rotationX(rotX)
-                    .rotationY((if (face == AttachFace.CEILING) facing else facing.opposite).yRot)
+                    .rotationY((if (face == AttachFace.CEILING) facing.opposite else facing).yRot)
             }
         }
         .withItem {
