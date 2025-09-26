@@ -5,10 +5,6 @@
     {
       "type": "quark:flag",
       "flag": "shingles"
-    },
-    {
-      "type": "forge:mod_loaded",
-      "modid": "quark"
     }
   ],
   "key": {

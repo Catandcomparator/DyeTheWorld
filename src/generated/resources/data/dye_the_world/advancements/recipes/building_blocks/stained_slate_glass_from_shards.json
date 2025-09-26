@@ -1,5 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "quark:flag",
+      "flag": "glass_shard"
+    }
+  ],
   "criteria": {
     "has_slate_shard": {
       "conditions": {

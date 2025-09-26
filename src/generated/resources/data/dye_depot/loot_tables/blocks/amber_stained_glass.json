@@ -1,5 +1,11 @@
 {
   "type": "minecraft:block",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "quark"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
@@ -8,7 +14,7 @@
           "type": "minecraft:alternatives",
           "children": [
             {
-              "type": "dye_the_world:item",
+              "type": "minecraft:item",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -27,7 +33,7 @@
               "name": "dye_depot:amber_stained_glass"
             },
             {
-              "type": "dye_the_world:item",
+              "type": "minecraft:item",
               "conditions": [
                 {
                   "condition": "quark:flag",

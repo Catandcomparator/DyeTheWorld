@@ -93,6 +93,13 @@ repositories {
     modrinthMaven()
     mavenLocal()
 
+    nexus {
+        content {
+            includeGroup("com.possible-triangle")
+            includeGroup("com.ninni.dye_depot")
+        }
+    }
+
     maven {
         url = uri("https://maven.blamejared.com/")
         content {
@@ -140,7 +147,7 @@ dependencies {
     modImplementation("maven.modrinth:upgrade-aquatic:${upgrade_aquatic_version}")
     modImplementation("maven.modrinth:blueprint:${blueprint_version}")
     modImplementation("maven.modrinth:chalk-mod:${chalk_version}")
-    modCompileOnly("maven.modrinth:create-deco:${create_deco_version}")
+    modImplementation("maven.modrinth:create-deco:${create_deco_version}")
     modImplementation("maven.modrinth:domestication-innovation:${domestication_innovation_version}")
     modImplementation("maven.modrinth:alexs-caves:${alexs_caves_version}")
     modImplementation("maven.modrinth:alexs-mobs:${alexs_mobs_version}")

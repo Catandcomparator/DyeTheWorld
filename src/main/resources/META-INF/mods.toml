@@ -35,7 +35,7 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="dye_depot"
 mandatory=true
-versionRange="*"
+versionRange="[1.2.0-forge,)"
 ordering="AFTER"
 side="BOTH"
 

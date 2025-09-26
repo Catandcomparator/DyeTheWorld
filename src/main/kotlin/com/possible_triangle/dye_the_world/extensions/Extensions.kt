@@ -5,6 +5,7 @@ import com.tterrag.registrate.builders.Builder
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import com.tterrag.registrate.util.DataIngredient
 import com.tterrag.registrate.util.nullness.NonNullSupplier
+import net.minecraft.advancements.critereon.StatePropertiesPredicate
 import net.minecraft.core.Direction
 import net.minecraft.core.Registry
 import net.minecraft.data.recipes.RecipeBuilder
@@ -20,6 +21,8 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.Property
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition
 import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.fml.ModList
@@ -47,9 +50,10 @@ fun <T : Any> Registry<T>.getOrThrow(id: ResourceLocation): T {
 
 fun String.createId(path: String) = ResourceLocation(this, path)
 
-val DyeColor.translation get() = serializedName.split("_").joinToString(" ") {
-    it.replaceFirstChar { it.uppercase(Locale.ROOT) }
-}
+val DyeColor.translation
+    get() = serializedName.split("_").joinToString(" ") {
+        it.replaceFirstChar { it.uppercase(Locale.ROOT) }
+    }
 
 val <R, T : R, P, S : Builder<R, T, P, S>> Builder<R, T, P, S>.namespace
     get(): String {
@@ -93,3 +97,6 @@ fun ShapedRecipeBuilder.defineUnlocking(key: Char, tag: TagKey<Item>) = define(k
 fun ShapelessRecipeBuilder.requiresUnlocking(item: ItemLike) = requires(item).unlockedBy(item)
 fun ShapelessRecipeBuilder.requiresUnlocking(tag: TagKey<Item>) = requires(tag).unlockedBy(tag)
 
+fun matchesState(block: Block, factory: StatePropertiesPredicate.Builder.() -> Unit): LootItemCondition.Builder =
+    LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+        .setProperties(StatePropertiesPredicate.Builder.properties().apply(factory))

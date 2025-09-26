@@ -4,6 +4,7 @@ import com.possible_triangle.dye_the_world.Constants.Mods.ANOTHER_FURNITURE
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.dyesFor
+import com.possible_triangle.dye_the_world.extensions.loot
 import com.possible_triangle.dye_the_world.extensions.optionalTag
 import com.possible_triangle.dye_the_world.extensions.translation
 import com.possible_triangle.dye_the_world.extensions.withItem
@@ -97,7 +98,7 @@ object DyedFurniture {
         REGISTRATE.`object`("${dye}_lamp_connector")
             .block { LampConnectorBlock(dye, it) }
             .lang("${dye.translation} Lamp")
-            .loot { t, b -> t.dropOther(b, LAMPS[dye]!!.get()) }
+            .loot(ANOTHER_FURNITURE) { t, b -> t.dropOther(b, LAMPS[dye]!!.get()) }
             .initialProperties { AFBlocks.RED_LAMP_CONNECTOR.get() }
             .lampConnectorBlockstate(dye)
             .register()

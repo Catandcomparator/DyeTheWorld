@@ -6,7 +6,6 @@ import com.illusivesoulworks.comforts.common.block.SleepingBagBlock
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.COMFORTS
 import com.possible_triangle.dye_the_world.extensions.*
-import com.possible_triangle.dye_the_world.`object`.BlockLessStatePropertyCondition
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
@@ -59,8 +58,8 @@ object DyedComforts {
 
 private fun <T : BaseComfortsBlock, P> BlockBuilder<T, P>.clothTransforms() = apply {
     clothBlockState()
-    loot { t, b ->
-        val isHead = BlockLessStatePropertyCondition.of {
+    loot(COMFORTS) { t, b ->
+        val isHead = matchesState(b) {
             hasProperty(BedBlock.PART, BedPart.HEAD)
         }
 

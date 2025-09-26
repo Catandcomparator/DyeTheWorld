@@ -1,5 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "quark:flag",
+      "flag": "framed_glass"
+    }
+  ],
   "criteria": {
     "has_dye": {
       "conditions": {

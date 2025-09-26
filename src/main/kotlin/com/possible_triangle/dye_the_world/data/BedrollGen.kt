@@ -3,11 +3,7 @@ package com.possible_triangle.dye_the_world.data
 import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.UPGRADE_AQUATIC
 import com.possible_triangle.dye_the_world.dyeingRecipe
-import com.possible_triangle.dye_the_world.extensions.createId
-import com.possible_triangle.dye_the_world.extensions.createVariant
-import com.possible_triangle.dye_the_world.extensions.recipe
-import com.possible_triangle.dye_the_world.extensions.yRot
-import com.possible_triangle.dye_the_world.`object`.BlockLessStatePropertyCondition
+import com.possible_triangle.dye_the_world.extensions.*
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.teamabnormals.upgrade_aquatic.core.other.tags.UAItemTags
 import com.tterrag.registrate.builders.BlockBuilder
@@ -57,13 +53,13 @@ fun <T : Item, P> ItemBuilder<T, P>.bedrollItemModel(dye: DyeColor) = model { co
     provider.generated(context, Constants.MOD_ID.createId("item/$UPGRADE_AQUATIC/bedroll/$dye"))
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.bedrollLoot() = loot { tables, block ->
+fun <T : Block, P> BlockBuilder<T, P>.bedrollLoot() = loot(UPGRADE_AQUATIC) { tables, block ->
     tables.add(
         block, LootTable.lootTable().withPool(
             tables.applyExplosionDecay(
                 block, LootPool.lootPool()
                     .add(LootItem.lootTableItem(block))
-                    .`when`(BlockLessStatePropertyCondition.of {
+                    .`when`(matchesState(block) {
                         hasProperty(BedrollBlock.PART, BedPart.HEAD)
                     })
             )

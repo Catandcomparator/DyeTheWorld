@@ -7,11 +7,6 @@ import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.ifLoaded
 import com.possible_triangle.dye_the_world.extensions.isLoaded
 import com.possible_triangle.dye_the_world.index.*
-import com.possible_triangle.dye_the_world.`object`.BlockLessStatePropertyCondition
-import com.possible_triangle.dye_the_world.`object`.OptionalLootEntry
-import net.minecraft.core.registries.Registries
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryType
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType
 import net.minecraftforge.data.loading.DatagenModLoader
 import net.minecraftforge.fml.common.Mod
 
@@ -20,17 +15,8 @@ object ForgeEntrypoint {
 
     val REGISTRATE = DyedRegistrate.create(Constants.MOD_ID)
 
-    val OPTIONAL_LOOT_ENTRY = REGISTRATE.`object`("item")
-        .generic(Registries.LOOT_POOL_ENTRY_TYPE) { LootPoolEntryType(OptionalLootEntry.Serializer) }
-        .register()
-
-    val OPTIONAL_STATE_PROPERTY_CONDITION = REGISTRATE.`object`("block_state_property")
-        .generic(Registries.LOOT_CONDITION_TYPE) { LootItemConditionType(BlockLessStatePropertyCondition.Serializer) }
-        .register()
-
     init {
         REGISTRATE.register()
-        DyedBaskets.register()
 
         ifLoaded(Constants.Mods.ANOTHER_FURNITURE) {
             DyedFurniture.register()
@@ -81,8 +67,8 @@ object ForgeEntrypoint {
             DyedComforts.register()
             DyedCreate.register()
             DyedCreateInterior.register()
-            // DyedCreateDeco.register()
-            // DyedRailways.register()
+            DyedCreateDeco.register()
+            DyedRailways.register()
             DyedChalk.registerDatagen()
             DyedWaystones.register()
         }

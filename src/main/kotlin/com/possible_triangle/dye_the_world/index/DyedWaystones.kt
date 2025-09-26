@@ -3,7 +3,6 @@ package com.possible_triangle.dye_the_world.index
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.WAYSTONES
 import com.possible_triangle.dye_the_world.extensions.*
-import com.possible_triangle.dye_the_world.`object`.BlockLessStatePropertyCondition
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.tterrag.registrate.providers.ProviderType
 import net.blay09.mods.waystones.block.SharestoneBlock
@@ -49,7 +48,7 @@ object DyedWaystones {
             .optionalTag(ModBlockTags.SHARESTONES)
             .optionalTag(ModBlockTags.IS_TELEPORT_TARGET)
             .optionalTag(BlockTags.MINEABLE_WITH_PICKAXE)
-            .loot { tables, block ->
+            .loot(WAYSTONES) { tables, block ->
                 val hasSilktouch = MatchTool.toolMatches(
                     ItemPredicate.Builder.item().hasEnchantment(
                         EnchantmentPredicate(
@@ -61,7 +60,7 @@ object DyedWaystones {
 
                 val pool = LootPool.lootPool()
                     .add(LootItem.lootTableItem(block))
-                    .`when`(BlockLessStatePropertyCondition.of {
+                    .`when`(matchesState(block) {
                         hasProperty(SharestoneBlock.HALF, DoubleBlockHalf.LOWER)
                     })
                     .apply(

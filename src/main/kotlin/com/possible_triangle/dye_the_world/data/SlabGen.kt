@@ -31,7 +31,7 @@ fun DyedRegistrate.createSlabs(
             val texture = dye.namespace.createId("block/${dye}_${name.path}")
             p.slabBlock(c.get(), dye.namespace.createId("block/${dye}_${name.path}"), texture)
         }
-        .loot { c, p ->
+        .loot(name.namespace) { c, p ->
             c.add(p, c.createSlabItemTable(p))
         }
         .withItem {

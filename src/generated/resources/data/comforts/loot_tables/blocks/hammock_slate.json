@@ -1,11 +1,18 @@
 {
   "type": "minecraft:block",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "comforts"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "dye_the_world:block_state_property",
+          "block": "comforts:hammock_slate",
+          "condition": "minecraft:block_state_property",
           "properties": {
             "part": "head"
           }
@@ -13,7 +20,7 @@
       ],
       "entries": [
         {
-          "type": "dye_the_world:item",
+          "type": "minecraft:item",
           "name": "comforts:hammock_slate"
         }
       ],

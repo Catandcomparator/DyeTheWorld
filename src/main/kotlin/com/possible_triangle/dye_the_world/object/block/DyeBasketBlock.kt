@@ -1,6 +1,5 @@
 package com.possible_triangle.dye_the_world.`object`.block
 
-import com.possible_triangle.dye_the_world.index.DyedBaskets
 import net.minecraft.core.BlockPos
 import net.minecraft.core.particles.DustParticleOptions
 import net.minecraft.server.level.ServerLevel

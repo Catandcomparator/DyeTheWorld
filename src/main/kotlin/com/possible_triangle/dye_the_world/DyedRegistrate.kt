@@ -1,8 +1,10 @@
 package com.possible_triangle.dye_the_world
 
-import com.possible_triangle.dye_the_world.data.DyedRegistrateRecipeProvider
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.requiresUnlocking
+import com.possible_triangle.multikulti.datagen.conditions.Condition
+import com.possible_triangle.multikulti.datagen.conditions.Conditional
+import com.possible_triangle.multikulti.datagen.conditions.ModLoaded
 import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder
 import com.tterrag.registrate.AbstractRegistrate
@@ -17,14 +19,11 @@ import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.resources.ResourceLocation
-import net.minecraft.sounds.SoundEvent
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.level.ItemLike
-import net.minecraftforge.common.crafting.conditions.ICondition
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition
 import net.minecraftforge.eventbus.api.IEventBus
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
@@ -67,12 +66,6 @@ class DyedRegistrate private constructor(modid: String) :
     fun <T : Any> TagKey<T>.addOptional(tag: TagKey<T>) {
         addDataGenerator(provider()) {
             it.addTag(this).addOptionalTag(tag)
-        }
-    }
-
-    fun sound() = currentName().let { it ->
-        generic(Registries.SOUND_EVENT) {
-            SoundEvent.createVariableRangeEvent(ResourceLocation(modid, it))
         }
     }
 
@@ -161,15 +154,13 @@ fun RegistrateRecipeProvider.shapedDyeingRecipe(
     }
 }
 
-fun RegistrateRecipeProvider.withCondition(condition: ICondition, block: () -> Unit) {
-    val conditional = this as DyedRegistrateRecipeProvider
-    conditional.pushCondition(condition)
-    block()
-    conditional.popCondition()
+fun Any.withCondition(condition: Condition, block: () -> Unit) {
+    val conditional = Conditional.of(this)
+    conditional.with(listOf(condition), block)
 }
 
-fun RegistrateRecipeProvider.withNamespace(namespace: String, block: () -> Unit) =
-    withCondition(ModLoadedCondition(namespace), block)
+fun Any.withNamespace(namespace: String, block: () -> Unit) =
+    withCondition(ModLoaded(namespace), block)
 
 fun RegistrateRecipeProvider.cleaningRecipe(
     clean: ItemLike,

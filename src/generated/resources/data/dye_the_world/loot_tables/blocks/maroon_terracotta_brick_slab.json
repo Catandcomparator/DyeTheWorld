@@ -1,17 +1,24 @@
 {
   "type": "minecraft:block",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "clayworks"
+    }
+  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "dye_the_world:item",
+          "type": "minecraft:item",
           "functions": [
             {
               "add": false,
               "conditions": [
                 {
-                  "condition": "dye_the_world:block_state_property",
+                  "block": "dye_the_world:maroon_terracotta_brick_slab",
+                  "condition": "minecraft:block_state_property",
                   "properties": {
                     "type": "double"
                   }

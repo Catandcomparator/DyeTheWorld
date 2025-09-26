@@ -1,5 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "quark:flag",
+      "flag": "shingles"
+    }
+  ],
   "criteria": {
     "has_navy_shingles": {
       "conditions": {

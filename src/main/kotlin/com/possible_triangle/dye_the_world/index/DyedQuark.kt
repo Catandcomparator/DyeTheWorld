@@ -1,10 +1,12 @@
 package com.possible_triangle.dye_the_world.index
 
+import com.google.gson.JsonObject
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.QUARK
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.multikulti.datagen.conditions.Condition
 import net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.resources.ResourceLocation
@@ -16,18 +18,26 @@ import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraftforge.client.model.generators.ModelBuilder
 import net.minecraftforge.common.Tags
-import net.minecraftforge.common.crafting.conditions.ICondition
 import org.violetmoon.quark.content.building.block.StoolBlock
 import org.violetmoon.zeta.block.ZetaGlassBlock
 import org.violetmoon.zeta.block.ZetaInheritedPaneBlock
 import org.violetmoon.zeta.config.ConfigFlagManager
-import org.violetmoon.zeta.config.FlagCondition
 import org.violetmoon.zeta.util.zetalist.ZetaList
-import org.violetmoon.zetaimplforge.registry.ForgeCraftingExtensionsRegistry
 
 private val TRANSLUCENT = ResourceLocation("translucent")
 
 private fun ModelBuilder<*>.translucent() = renderType(TRANSLUCENT)
+
+data class QuarkConfigCondition(val flag: String) : Condition {
+    override fun JsonObject.toFabric() {
+        error("no fabric support yet")
+    }
+
+    override fun JsonObject.toForge() {
+        addProperty("type", "quark:flag")
+        addProperty("flag", flag)
+    }
+}
 
 object DyedQuark {
 
@@ -43,10 +53,8 @@ object DyedQuark {
 
     private fun flagEnabled(flag: String) = FLAG_MANAGER.getFlag(flag)
 
-    fun flagCondition(flag: String): ICondition {
-        return ForgeCraftingExtensionsRegistry.Zeta2ForgeCondition(
-            FlagCondition(FLAG_MANAGER, flag, QUARK.createId("flag"), { false })
-        )
+    fun flagCondition(flag: String): QuarkConfigCondition {
+        return QuarkConfigCondition(flag)
     }
 
     val GLASS_SHARDS = DYES.associateWith { dye ->

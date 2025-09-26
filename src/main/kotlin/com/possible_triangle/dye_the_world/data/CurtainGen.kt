@@ -4,11 +4,7 @@ import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.Constants.Mods.ANOTHER_FURNITURE
 import com.possible_triangle.dye_the_world.blockOf
 import com.possible_triangle.dye_the_world.dyeingRecipe
-import com.possible_triangle.dye_the_world.extensions.createId
-import com.possible_triangle.dye_the_world.extensions.createVariant
-import com.possible_triangle.dye_the_world.extensions.recipe
-import com.possible_triangle.dye_the_world.extensions.yRot
-import com.possible_triangle.dye_the_world.`object`.BlockLessStatePropertyCondition
+import com.possible_triangle.dye_the_world.extensions.*
 import com.starfish_studios.another_furniture.block.CurtainBlock
 import com.starfish_studios.another_furniture.block.properties.HorizontalConnectionType
 import com.starfish_studios.another_furniture.registry.AFBlocks
@@ -106,8 +102,8 @@ fun <T : Item, P> ItemBuilder<T, P>.curtainItemModel(dye: DyeColor) = model { co
         .texture("all", Constants.MOD_ID.createId("block/$ANOTHER_FURNITURE/curtain/$dye"))
 }
 
-fun <T : Block, P> BlockBuilder<T, P>.curtainLoot() = loot { tables, block ->
-    val isTop = BlockLessStatePropertyCondition.of {
+fun <T : Block, P> BlockBuilder<T, P>.curtainLoot() = loot(ANOTHER_FURNITURE) { tables, block ->
+    val isTop = matchesState(block) {
         hasProperty(CurtainBlock.VERTICAL_CONNECTION_TYPE, Direction.UP)
     }
 

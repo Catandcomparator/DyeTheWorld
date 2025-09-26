@@ -4,6 +4,7 @@ import com.possible_triangle.dye_the_world.Constants
 import com.possible_triangle.dye_the_world.DyedRegistrate
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.getOrThrow
+import com.possible_triangle.dye_the_world.extensions.loot
 import com.possible_triangle.dye_the_world.index.DyedQuark
 import com.possible_triangle.dye_the_world.index.DyedQuark.GLASS_SHARDS
 import com.tterrag.registrate.AbstractRegistrate
@@ -46,7 +47,7 @@ fun generateGlassShardLoot() {
     GLASS_SHARDS.forEach { (dye, shard) ->
         registrate.`object`("${dye}_stained_glass")
             .entry { name, callback -> SimpleBlockBuilder(registrate, name, callback) }
-            .loot { tables, stainedGlass ->
+            .loot(Constants.Mods.QUARK) { tables, stainedGlass ->
                 val flagConditionType = BuiltInRegistries.LOOT_CONDITION_TYPE.getOrThrow(Constants.Mods.QUARK.createId("flag"))
 
                 val entry = AlternativesEntry.alternatives(

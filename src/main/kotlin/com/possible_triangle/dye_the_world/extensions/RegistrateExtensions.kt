@@ -9,6 +9,7 @@ import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.providers.DataGenContext
 import com.tterrag.registrate.providers.ProviderType
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables
 import com.tterrag.registrate.util.nullness.NonNullSupplier
 import net.minecraft.resources.ResourceKey
 import net.minecraft.tags.TagKey
@@ -61,6 +62,15 @@ fun <T : Item, P> ItemBuilder<T, P>.recipe(
 ) = recipe { context, provider ->
     provider.withNamespace(namespace) {
         factory(context, provider)
+    }
+}
+
+fun <T : Block, P> BlockBuilder<T, P>.loot(
+    namespace: String,
+    factory: (RegistrateBlockLootTables, T) -> Unit
+) = loot { provider, entry ->
+    provider.withNamespace(namespace) {
+        factory(provider, entry)
     }
 }
 
