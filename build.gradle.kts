@@ -1,7 +1,6 @@
 
 import com.possible_triangle.gradle.features.publishing.DependencyBuilder
 import net.minecraftforge.gradle.common.util.MinecraftExtension
-import org.spongepowered.asm.gradle.plugins.MixinExtension
 
 val mod_id: String by extra
 val mc_version: String by extra
@@ -39,10 +38,6 @@ forge {
     // TODO do I need this?
     mods.include(libs.multikulti.core)
     // includesMod("com.possible-triangle:multikulti-registrate-forge:${mc_version}-${multikulti_version}")
-}
-
-configure<MixinExtension> {
-    config("${mod_id}.data.mixins.json")
 }
 
 // needed because of flywheel accessing the config too early
