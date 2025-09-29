@@ -11,6 +11,11 @@ hash = "e1016eb125a5a41a10f80847eb00affae0e539e703846f303949ed5d82b7f1bf"
 metafile = true
 
 [[files]]
+file = "mods/amendments.pw.toml"
+hash = "c2ec7d87283cca5de5a7ec0d82c3d94fc22d9511ce90bfc286ae51d749c2c6a9"
+metafile = true
+
+[[files]]
 file = "mods/another-furniture.pw.toml"
 hash = "64bcde890c30378ebb2f305268bd76c412e1f5d4709896e97449cbe95b653fe5"
 metafile = true
@@ -103,6 +108,11 @@ metafile = true
 [[files]]
 file = "mods/more-concrete.pw.toml"
 hash = "08352af7aeaab7129d27e2aee3e97a4e9ad97ee751d7cba81a78b923402bc6ab"
+metafile = true
+
+[[files]]
+file = "mods/polytone.pw.toml"
+hash = "96d6ef91a108386ff19d45c201fa8c9fb8e0f3d4c3df3dff7396957a8350a419"
 metafile = true
 
 [[files]]
