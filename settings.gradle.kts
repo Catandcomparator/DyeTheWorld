@@ -8,7 +8,7 @@ pluginManagement {
     }
 }
 
-
 plugins {
     id("com.possible-triangle.packwiz") version ("0.0.0-dev")
 }
+

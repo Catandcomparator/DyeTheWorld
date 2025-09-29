@@ -1,47 +1,13 @@
+
 import com.possible_triangle.gradle.features.publishing.DependencyBuilder
 import net.minecraftforge.gradle.common.util.MinecraftExtension
-import net.minecraftforge.gradle.userdev.jarjar.JarJarProjectExtension
 import org.spongepowered.asm.gradle.plugins.MixinExtension
 
 val mod_id: String by extra
-val mixin_extras_version: String by extra
 val mc_version: String by extra
-val registrate_version: String by extra
-val multikulti_version: String by extra
-val create_version: String by extra
-val ponder_version: String by extra
-val flywheel_version: String by extra
-val jei_version: String by extra
-val supplementaries_version: String by extra
-val moonlight_lib_version: String by extra
-val dye_depot_version: String by extra
-val another_furniture_version: String by extra
-val comforts_version: String by extra
-val supplementaries_squared_version: String by extra
-val quark_version: String by extra
-val zeta_version: String by extra
-val jade_version: String by extra
-val farmers_delight_version: String by extra
-val clayworks_version: String by extra
-val upgrade_aquatic_version: String by extra
-val blueprint_version: String by extra
-val gallery_version: String by extra
-val alexs_caves_version: String by extra
-val domestication_innovation_version: String by extra
-val citadel_version: String by extra
-val chalk_version: String by extra
-val create_deco_version: String by extra
-val create_railways_version: String by extra
-val create_interiors_version: String by extra
-val ars_nouveau_version: String by extra
-val curios_version: String by extra
-val more_concrete_version: String by extra
-val alexs_mobs_version: String by extra
-val waystones_version: String by extra
-val balm_version: String by extra
 
 plugins {
-    id("com.possible-triangle.gradle") version ("0.0.0-dev")
+    alias(libs.plugins.gradle.helper)
 }
 
 withKotlin()
@@ -68,10 +34,10 @@ forge {
         existing("interiors")
     }
 
-    includesMod("com.tterrag.registrate:Registrate:${registrate_version}")
-    includesMod("com.possible-triangle:multikulti-datagen-forge-fix:${mc_version}-${multikulti_version}")
+    mods.include(libs.registrate)
+    mods.include(libs.multikulti.datagen.fix)
     // TODO do I need this?
-    includesMod("com.possible-triangle:multikulti-core-forge:${mc_version}-${multikulti_version}")
+    mods.include(libs.multikulti.core)
     // includesMod("com.possible-triangle:multikulti-registrate-forge:${mc_version}-${multikulti_version}")
 }
 
@@ -121,19 +87,15 @@ repositories {
     }
 }
 
-val jarJar = the<JarJarProjectExtension>()
-
 dependencies {
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")!!)
-    implementation("jarJar"("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}")) {
-        jarJar.ranged(this, "[${mixin_extras_version},)")
+    modImplementation(libs.multikulti.datagen)
+    modImplementation(variantOf(libs.create) {
+        classifier("slim")
+    }) {
+        isTransitive = false
     }
-
-    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
-    modImplementation("com.possible-triangle:multikulti-datagen-forge:${mc_version}-${multikulti_version}")
-    modImplementation("com.simibubi.create:create-${mc_version}:${create_version}:slim") { isTransitive = false }
-    modImplementation("net.createmod.ponder:Ponder-Forge-${mc_version}:${ponder_version}")
-    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${mc_version}:${flywheel_version}")
+    modImplementation(libs.ponder)
+    modCompileOnly(libs.flywheel.api)
     modImplementation(pack.modrinth.another.furniture)
     modImplementation(pack.modrinth.comforts)
     modImplementation(pack.modrinth.moonlight)
@@ -152,9 +114,9 @@ dependencies {
     modImplementation(pack.modrinth.alexs.mobs)
     modImplementation(pack.modrinth.waystones)
 
-    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${mc_version}:${flywheel_version}")
-    modRuntimeOnly("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-    modRuntimeOnly("com.ninni.dye_depot:dye_depot:${dye_depot_version}")
+    modRuntimeOnly(libs.flywheel)
+    modRuntimeOnly(libs.jei)
+    modRuntimeOnly(libs.dye.depot)
     modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.citadel)
     modRuntimeOnly(pack.modrinth.create.steam.n.rails)
