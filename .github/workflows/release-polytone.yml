@@ -35,7 +35,7 @@ jobs:
 
       - uses: Kir-Antipov/mc-publish@v3.3
         id: publish
-        if: steps.cache.outputs.cache-hit != 'true' || inputs.skip-cache == 'true'
+        if: steps.cache.outputs.cache-hit != 'true' || inputs.skip-cache
         with:
           modrinth-id: 2j2IcOdG
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
@@ -50,4 +50,4 @@ jobs:
             polytone
 
       - run: echo ${{ steps.publish.outputs.modrinth-url }} > modrinth-link.txt
-        if: steps.cache.outputs.cache-hit != 'true' || inputs.skip-cache == 'true'
+        if: steps.cache.outputs.cache-hit != 'true' || inputs.skip-cache
