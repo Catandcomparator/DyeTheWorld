@@ -7,7 +7,7 @@ import com.possible_triangle.dye_the_world.data.chalkItemModel
 import com.possible_triangle.dye_the_world.data.chalkRecipe
 import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.optionalTag
-import com.possible_triangle.dye_the_world.extensions.translation
+import com.possible_triangle.dye_the_world.translation
 import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import io.github.mortuusars.chalk.Chalk
 import io.github.mortuusars.chalk.block.ChalkMarkBlock

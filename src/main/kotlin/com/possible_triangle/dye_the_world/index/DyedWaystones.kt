@@ -7,6 +7,7 @@ import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.germanTranslation
 import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
+import com.possible_triangle.dye_the_world.translation
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.tterrag.registrate.providers.ProviderType
 import net.blay09.mods.waystones.block.SharestoneBlock

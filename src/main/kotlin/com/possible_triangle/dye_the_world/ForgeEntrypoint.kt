@@ -2,6 +2,7 @@ package com.possible_triangle.dye_the_world
 
 import com.possible_triangle.dye_the_world.compat.CreateCompat
 import com.possible_triangle.dye_the_world.data.generateGlassShardLoot
+import com.possible_triangle.dye_the_world.data.generatePackMetadata
 import com.possible_triangle.dye_the_world.data.generateTags
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.ifLoaded
@@ -60,6 +61,7 @@ object ForgeEntrypoint {
 
         if (DatagenModLoader.isRunningDataGen()) {
             REGISTRATE.generateTags()
+            REGISTRATE.generatePackMetadata()
             generateGlassShardLoot()
 
             // These are blocks & Items which are automatically added for all dye colors, included modded ones.

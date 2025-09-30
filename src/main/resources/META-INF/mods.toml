@@ -61,6 +61,13 @@ ordering="AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
+modId = "amendments"
+mandatory = false
+versionRange = "*"
+ordering="BEFORE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
 modId = "chalk"
 mandatory = false
 versionRange = "*"
@@ -69,6 +76,13 @@ side = "BOTH"
 
 [[dependencies.${mod_id}]]
 modId = "upgrade_aquatic"
+mandatory = false
+versionRange = "*"
+ordering="AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "farmersdelight"
 mandatory = false
 versionRange = "*"
 ordering="AFTER"

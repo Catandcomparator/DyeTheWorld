@@ -14,7 +14,6 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.resources.ResourceKey
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.tags.TagKey
-import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.block.Block
@@ -27,7 +26,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider
 import net.minecraftforge.client.model.generators.ConfiguredModel
 import net.minecraftforge.fml.ModList
 import net.minecraftforge.registries.ForgeRegistries
-import java.util.*
 
 fun isLoaded(modid: String) = ModList.get().isLoaded(modid)
 
@@ -49,11 +47,6 @@ fun <T : Any> Registry<T>.getOrThrow(id: ResourceLocation): T {
 }
 
 fun String.createId(path: String) = ResourceLocation(this, path)
-
-val DyeColor.translation
-    get() = serializedName.split("_").joinToString(" ") {
-        it.replaceFirstChar { it.uppercase(Locale.ROOT) }
-    }
 
 val <R, T : R, P, S : Builder<R, T, P, S>> Builder<R, T, P, S>.namespace
     get(): String {

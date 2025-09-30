@@ -11,6 +11,7 @@ import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.registrate.cleaningRecipe
 import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
+import com.possible_triangle.dye_the_world.translation
 import com.possible_triangle.dye_the_world.withNamespace
 import com.teamabnormals.upgrade_aquatic.common.block.BedrollBlock
 import com.teamabnormals.upgrade_aquatic.core.other.tags.UABlockTags

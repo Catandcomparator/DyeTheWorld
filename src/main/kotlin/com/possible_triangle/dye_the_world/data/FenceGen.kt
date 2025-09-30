@@ -1,6 +1,9 @@
 package com.possible_triangle.dye_the_world.data
 
-import com.possible_triangle.dye_the_world.extensions.*
+import com.possible_triangle.dye_the_world.extensions.asIngredient
+import com.possible_triangle.dye_the_world.extensions.createId
+import com.possible_triangle.dye_the_world.extensions.optionalTag
+import com.possible_triangle.dye_the_world.extensions.withItem
 import com.possible_triangle.dye_the_world.namespace
 import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.tterrag.registrate.builders.BlockBuilder
@@ -60,7 +63,7 @@ fun DyedRegistrate.createFenceGates(
     modifyBlock: BlockBuilder<FenceGateBlock, DyedRegistrate>.(DyeColor) -> Unit = {},
     modifyItem: ItemBuilder<BlockItem, BlockBuilder<FenceGateBlock, DyedRegistrate>>.(DyeColor) -> Unit = {},
 ) = from.mapValues { (dye, base) ->
-    `object`("${dye}_${name.path}_fence_ate")
+    `object`("${dye}_${name.path}_fence_gate")
         .dyedBlock(dye, name.namespace) { FenceGateBlock(it, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE) }
         .initialProperties(base)
         .optionalTag(BlockTags.FENCE_GATES)

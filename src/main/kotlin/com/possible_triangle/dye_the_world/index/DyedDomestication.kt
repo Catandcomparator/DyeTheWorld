@@ -7,7 +7,7 @@ import com.possible_triangle.dye_the_world.data.petBedBlockstate
 import com.possible_triangle.dye_the_world.data.petBedRecipe
 import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.optionalTag
-import com.possible_triangle.dye_the_world.extensions.translation
+import com.possible_triangle.dye_the_world.translation
 import com.possible_triangle.dye_the_world.extensions.withItem
 import net.minecraft.core.registries.Registries
 import net.minecraft.resources.ResourceKey

@@ -8,6 +8,7 @@ import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.germanTranslation
 import com.possible_triangle.dye_the_world.registrate.shapedDyeingRecipe
+import com.possible_triangle.dye_the_world.translation
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries

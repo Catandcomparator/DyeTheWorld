@@ -9,7 +9,7 @@ import com.possible_triangle.dye_the_world.data.shippingContainerBlockstate
 import com.possible_triangle.dye_the_world.data.shippingContainerRecipe
 import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.optionalTag
-import com.possible_triangle.dye_the_world.extensions.translation
+import com.possible_triangle.dye_the_world.translation
 import com.possible_triangle.dye_the_world.extensions.withItem
 import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.simibubi.create.AllTags.AllBlockTags

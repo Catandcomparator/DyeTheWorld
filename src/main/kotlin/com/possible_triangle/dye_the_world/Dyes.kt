@@ -9,6 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.world.item.DyeColor
 import net.minecraft.world.item.Item
 import net.minecraft.world.level.block.Block
+import java.util.*
 
 @JvmField
 val DEPOT_DYES = listOf(
@@ -60,5 +61,16 @@ fun DyeColor.blockOf(type: String): Block {
 }
 
 fun dyedBlockMap(modid: String, type: String): Map<DyeColor, NonNullSupplier<Block>> {
-    return dyesFor(modid).associateWith { NonNullSupplier { it.blockOf(type) } }
+    return dyesFor(modid).associateWith { NonNullSupplier.lazy { it.blockOf(type) } }
 }
+
+fun dyedItemMap(modid: String, type: String): Map<DyeColor, NonNullSupplier<Item>> {
+    return dyesFor(modid).associateWith { NonNullSupplier.lazy { it.itemOf(type) } }
+}
+
+val DyeColor.translation
+    get() = serializedName.split("_").joinToString(" ") { part ->
+        part.replaceFirstChar { it.uppercase(Locale.ROOT) }
+    }
+
+val DyeColor?.isVanilla get() = this == null || id < 16

@@ -2,12 +2,13 @@ package com.possible_triangle.dye_the_world.index
 
 import com.possible_triangle.dye_the_world.Constants.Mods.CREATE_RAILWAYS
 import com.possible_triangle.dye_the_world.blockOf
+import com.possible_triangle.dye_the_world.dyedItemMap
 import com.possible_triangle.dye_the_world.dyesFor
 import com.possible_triangle.dye_the_world.extensions.createId
 import com.possible_triangle.dye_the_world.extensions.optionalTag
-import com.possible_triangle.dye_the_world.extensions.translation
 import com.possible_triangle.dye_the_world.registrate.DyedRegistrate
 import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
+import com.possible_triangle.dye_the_world.translation
 import com.simibubi.create.AllItems
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe
 import com.simibubi.create.content.kinetics.saw.CuttingRecipe
@@ -56,6 +57,14 @@ object DyedRailways {
             }
             .register()
     }
+
+    @JvmField
+    val TRANSLATIONS = DYES
+        .associateWith { it.translation }
+        .mapKeys { it.key.serializedName }
+
+    @JvmField
+    val DYE_ITEMS = dyedItemMap(CREATE_RAILWAYS, "dye")
 
     fun register() {
         REGISTRATE.register()
