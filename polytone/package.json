@@ -1,0 +1,15 @@
+{
+  "name": "polytone",
+  "module": "main.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "prepare": "datamod codegen --output . --registry-dump ./dump"
+  },
+  "private": true,
+  "type": "module"
+}

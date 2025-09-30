@@ -7,6 +7,7 @@ val mc_version: String by extra
 
 plugins {
     alias(libs.plugins.gradle.helper)
+    idea
 }
 
 withKotlin()
@@ -108,19 +109,22 @@ dependencies {
     modImplementation(pack.modrinth.alexs.caves)
     modImplementation(pack.modrinth.alexs.mobs)
     modImplementation(pack.modrinth.waystones)
+    modImplementation(pack.modrinth.create.steam.n.rails)
 
     modRuntimeOnly(libs.flywheel)
     modRuntimeOnly(libs.jei)
     modRuntimeOnly(libs.dye.depot)
     modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.citadel)
-    modRuntimeOnly(pack.modrinth.create.steam.n.rails)
     modRuntimeOnly(pack.modrinth.interiors)
     modRuntimeOnly(pack.modrinth.curios)
     modRuntimeOnly(pack.modrinth.ars.nouveau)
     modRuntimeOnly(pack.modrinth.gallery)
     modRuntimeOnly(pack.modrinth.more.concrete)
     modRuntimeOnly(pack.modrinth.balm)
+    modRuntimeOnly(pack.modrinth.polytone)
+    modRuntimeOnly(pack.modrinth.amendments)
+    modRuntimeOnly(pack.modrinth.registry.dump)
 }
 
 tasks.processResources {
@@ -167,6 +171,12 @@ uploadToModrinth {
     }
 
     syncBodyFromReadme()
+}
+
+idea {
+    module {
+        excludeDirs.add(file("polytone"))
+    }
 }
 
 enableSonarQube()

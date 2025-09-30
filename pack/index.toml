@@ -121,6 +121,11 @@ hash = "8df897c0f7831e919aa528c3c1e5239f39439c123d99761230ab2357132bad98"
 metafile = true
 
 [[files]]
+file = "mods/registry-dump.pw.toml"
+hash = "6caa89370f57954c89f497c95773bac78de32323f16dd3d70a525126f6430a85"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries-squared.pw.toml"
 hash = "df234a0111607b6206f294045a076e091e4314eef4b54aba089c02d4f878218d"
 metafile = true
