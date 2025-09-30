@@ -6,7 +6,7 @@ import com.possible_triangle.dye_the_world.extensions.getOrThrow
 import com.possible_triangle.dye_the_world.index.DyedQuark
 import com.possible_triangle.dye_the_world.index.DyedQuark.flagCondition
 import com.possible_triangle.dye_the_world.registrate.dye
-import com.possible_triangle.dye_the_world.withCondition
+import com.possible_triangle.multikulti.datagen.conditions.withConditions
 import com.tterrag.registrate.builders.ItemBuilder
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.core.registries.BuiltInRegistries
@@ -16,7 +16,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder
 import net.minecraft.world.item.Item
 
 fun <I : Item, P> ItemBuilder<I, P>.framedGlassRecipes() = recipe { context, provider ->
-    provider.withCondition(flagCondition("framed_glass")) {
+    provider.withConditions(flagCondition("framed_glass")) {
         val framedGlass = BuiltInRegistries.BLOCK.getOrThrow(QUARK.createId("framed_glass"))
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, context.get(), 8)
@@ -36,7 +36,7 @@ fun <I : Item, P> ItemBuilder<I, P>.framedGlassRecipes() = recipe { context, pro
 }
 
 fun <I : Item, P> ItemBuilder<I, P>.framedGlassPaneRecipes() = recipe { context, provider ->
-    provider.withCondition(flagCondition("framed_glass")) {
+    provider.withConditions(flagCondition("framed_glass")) {
         val framedGlass = DyedQuark.FRAMED_GLASS[dye]!!.get()
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get(), 16)

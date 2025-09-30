@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:oxeye_daisy"
+    }
+  ],
+  "result": [
+    {
+      "count": 2,
+      "item": "dye_depot:beige_dye"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}

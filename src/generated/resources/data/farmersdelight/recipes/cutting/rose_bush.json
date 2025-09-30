@@ -1,0 +1,17 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:rose_bush"
+    }
+  ],
+  "result": [
+    {
+      "count": 3,
+      "item": "dye_depot:rose_dye"
+    }
+  ],
+  "tool": {
+    "tag": "farmersdelight:tools/knives"
+  }
+}

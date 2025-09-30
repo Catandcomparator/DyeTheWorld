@@ -8,7 +8,7 @@ import com.possible_triangle.dye_the_world.extensions.createVariant
 import com.possible_triangle.dye_the_world.index.DyedQuark
 import com.possible_triangle.dye_the_world.registrate.dye
 import com.possible_triangle.dye_the_world.registrate.dyeingRecipe
-import com.possible_triangle.dye_the_world.withCondition
+import com.possible_triangle.multikulti.datagen.conditions.withConditions
 import com.starfish_studios.another_furniture.registry.AFBlocks
 import com.tterrag.registrate.builders.BlockBuilder
 import com.tterrag.registrate.builders.ItemBuilder
@@ -21,7 +21,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel
 import org.violetmoon.quark.content.building.block.StoolBlock
 
 fun <T : Item, P> ItemBuilder<T, P>.quarkStoolRecipe() = recipe { context, provider ->
-    provider.withCondition(DyedQuark.flagCondition("stools")) {
+    provider.withConditions(DyedQuark.flagCondition("stools")) {
         val wool = dye.blockOf("wool")
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, context.get())
             .group("stools")

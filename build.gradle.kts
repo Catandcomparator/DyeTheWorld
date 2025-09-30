@@ -110,10 +110,10 @@ dependencies {
     modImplementation(pack.modrinth.alexs.mobs)
     modImplementation(pack.modrinth.waystones)
     modImplementation(pack.modrinth.create.steam.n.rails)
+    modImplementation(libs.dye.depot)
 
     modRuntimeOnly(libs.flywheel)
     modRuntimeOnly(libs.jei)
-    modRuntimeOnly(libs.dye.depot)
     modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.citadel)
     modRuntimeOnly(pack.modrinth.interiors)
@@ -122,7 +122,7 @@ dependencies {
     modRuntimeOnly(pack.modrinth.gallery)
     modRuntimeOnly(pack.modrinth.more.concrete)
     modRuntimeOnly(pack.modrinth.balm)
-    modRuntimeOnly(pack.modrinth.polytone)
+    // modRuntimeOnly(pack.modrinth.polytone)
     modRuntimeOnly(pack.modrinth.amendments)
     modRuntimeOnly(pack.modrinth.registry.dump)
 }

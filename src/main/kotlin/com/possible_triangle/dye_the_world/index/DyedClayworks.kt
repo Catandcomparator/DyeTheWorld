@@ -1,13 +1,19 @@
 package com.possible_triangle.dye_the_world.index
 
 import com.google.common.base.Suppliers.memoize
+import com.google.gson.JsonObject
 import com.possible_triangle.dye_the_world.*
 import com.possible_triangle.dye_the_world.Constants.Mods.CLAYWORKS
 import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.dye_the_world.registrate.shapedDyeingRecipe
+import com.possible_triangle.multikulti.datagen.conditions.Condition
+import com.possible_triangle.multikulti.datagen.conditions.ModLoaded
+import com.possible_triangle.multikulti.datagen.conditions.withConditions
 import com.teamabnormals.clayworks.core.registry.ClayworksBlocks
+import com.teamabnormals.clayworks.core.registry.ClayworksRecipes.ClayworksRecipeSerializers
+import com.tterrag.registrate.providers.ProviderType
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS
 import net.minecraft.data.recipes.ShapedRecipeBuilder
@@ -18,11 +24,23 @@ import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.DecoratedPotBlock
 
+data class ClayworksConfigCondition(val flag: String) : Condition {
+    override fun JsonObject.toFabric() {
+        error("no fabric support yet")
+    }
+
+    override fun JsonObject.toForge() {
+        addProperty("type", "$CLAYWORKS:config")
+        addProperty("value", flag)
+    }
+}
+
 object DyedClayworks {
 
     private val DYES = dyesFor(CLAYWORKS)
 
     private val TERRACOTTA = dyedBlockMap(CLAYWORKS, "terracotta")
+    private val GLAZED_TERRACOTTA = dyedBlockMap(CLAYWORKS, "glazed_terracotta")
 
     val TERRACOTTA_BRICKS = DYES.associateWith { dye ->
         REGISTRATE.`object`("${dye}_terracotta_bricks")
@@ -181,7 +199,22 @@ object DyedClayworks {
     fun dyeOf(block: Block): DyeColor? = DYE_BY_DECORATED_POT.get()[block]
 
     fun register() {
-        // Loads this class
+        REGISTRATE.addDataGenerator(ProviderType.RECIPE) { provider ->
+            provider.withConditions(ModLoaded(CLAYWORKS), ClayworksConfigCondition("kiln")) {
+                TERRACOTTA.forEach { (dye, terracotta) ->
+                    val glazed = GLAZED_TERRACOTTA.getValue(dye)
+                    provider.cooking(
+                        terracotta.asIngredient(),
+                        BUILDING_BLOCKS,
+                        glazed,
+                        0.1F,
+                        100,
+                        "baking",
+                        ClayworksRecipeSerializers.BAKING_RECIPE.get()
+                    )
+                }
+            }
+        }
     }
 
 }

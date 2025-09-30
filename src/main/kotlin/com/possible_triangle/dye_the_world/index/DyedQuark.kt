@@ -7,6 +7,7 @@ import com.possible_triangle.dye_the_world.ForgeEntrypoint.REGISTRATE
 import com.possible_triangle.dye_the_world.data.*
 import com.possible_triangle.dye_the_world.extensions.*
 import com.possible_triangle.multikulti.datagen.conditions.Condition
+import com.possible_triangle.multikulti.datagen.conditions.withConditions
 import net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS
 import net.minecraft.data.recipes.ShapedRecipeBuilder
 import net.minecraft.resources.ResourceLocation
@@ -34,7 +35,7 @@ data class QuarkConfigCondition(val flag: String) : Condition {
     }
 
     override fun JsonObject.toForge() {
-        addProperty("type", "quark:flag")
+        addProperty("type", "$QUARK:flag")
         addProperty("flag", flag)
     }
 }
@@ -66,7 +67,7 @@ object DyedQuark {
             .optionalTag(DyedTags.Items.GLASS_SHARDS)
             .recipe { context, provider ->
                 val glass = dye.blockOf("stained_glass")
-                provider.withCondition(flagCondition("glass_shard")) {
+                provider.withConditions(flagCondition("glass_shard")) {
                     ShapedRecipeBuilder.shaped(BUILDING_BLOCKS, glass)
                         .pattern("XX")
                         .pattern("XX")
@@ -132,7 +133,7 @@ object DyedQuark {
         },
         modifyItem = { dye ->
             recipe { context, provider ->
-                provider.withCondition(flagCondition("shingles")) {
+                provider.withConditions(flagCondition("shingles")) {
                     provider.slab(SHINGLES[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                     provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context, 2)
                 }
@@ -155,7 +156,7 @@ object DyedQuark {
         },
         modifyItem = { dye ->
             recipe { context, provider ->
-                provider.withCondition(flagCondition("shingles")) {
+                provider.withConditions(flagCondition("shingles")) {
                     provider.stairs(SHINGLES[dye]!!.asIngredient(), BUILDING_BLOCKS, context, null, true)
                     provider.stonecutting(TERRACOTTA[dye]!!.asIngredient(), BUILDING_BLOCKS, context)
                 }

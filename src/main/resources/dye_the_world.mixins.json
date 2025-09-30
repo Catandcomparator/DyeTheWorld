@@ -7,12 +7,11 @@
   "refmap": "${mod_id}.refmap.json",
   "mixins": [
     "BlockEntityTypeAccessor", "ChalkMixin", "ClayworksBlocksMixin", "ClayworksCompatMixin", "ColorUtilsMixin",
-    "EntityElephantMixin", "LampBlockMixin", "LampConnectorBlockMixin", "QuarkJeiPluginMixin"
+    "EntityElephantMixin", "LampBlockMixin", "LampConnectorBlockMixin", "QuarkJeiPluginMixin",
+    "data.SimpleCookingRecipeBuilderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
-  "client": [
-    "LayerElephantOverlaysMixin", "ChimneyPushParticleDataMixin", "PuffSmokeParticleDataMixin"
-  ]
+  "client": ["ChimneyPushParticleDataMixin", "LayerElephantOverlaysMixin", "PuffSmokeParticleDataMixin"]
 }
