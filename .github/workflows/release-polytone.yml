@@ -41,7 +41,7 @@ jobs:
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           files: |
             polytone/*.zip
-          version: 1.0.${{ env.GITHUB_RUN_NUMBER }}
+          version: 1.0.${{ github.run_number }}
           game-versions: |
             1.20.1
           loaders: |
