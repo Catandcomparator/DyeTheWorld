@@ -6,7 +6,7 @@ import {
 import type { ItemId } from "@pssbletrngle/data-modifier/generated";
 import { createResolver } from "@pssbletrngle/pack-resolver";
 import { createDefaultMergers } from "@pssbletrngle/resource-merger";
-import { copyFileSync } from "fs";
+import { copyFileSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 const logger = createLogger();
@@ -57,6 +57,13 @@ function replace(color: string, base: string) {
   return base.replace("$color", color);
 }
 
+let previous: IdInput<ItemId> | undefined = undefined;
+
+function requireItem(id: IdInput) {
+  loader.registries.validateEntry("minecraft:item", id);
+  return id as ItemId;
+}
+
 function addColored(
   namespace: string,
   base: string,
@@ -64,15 +71,16 @@ function addColored(
   idFactory: (color: string, base: string) => string = prepend
 ) {
   const ids = colors.map<IdInput<ItemId>>((color) => {
-    const id = { namespace, path: idFactory(color, base) };
-    loader.registries.validateEntry("minecraft:item", id);
-    return id;
+    return requireItem({ namespace, path: idFactory(color, base) });
   });
   loader.tabs.add(tab, ids, {
     file: { namespace: PACK_NAMESPACE, path: mod },
     mods: [mod],
+    after: previous,
   });
-  logger.info(` added ${base}s from ${mod}`);
+  logger.info(`  added ${base}s from ${mod}`);
+
+  previous = ids[ids.length - 1];
 }
 
 addColored("dye_depot", "dye");
@@ -172,9 +180,12 @@ const merger = createDefaultMergers({
   silent: true,
   output,
   packFormat,
+  title: "adds a creative tab for dye depot's items",
 });
 
-await loader.emit(merger.createAcceptor());
+const acceptor = merger.createAcceptor();
+acceptor("pack.png", readFileSync("icon.png"));
+await loader.emit(acceptor);
 await merger.finalize();
 
 copyFileSync(output, resolve("..", "run", "resourcepacks", name));
