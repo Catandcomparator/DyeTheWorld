@@ -1,4 +1,4 @@
-name: Release
+name: Release Polytone
 on:
   workflow_dispatch:
   push:
@@ -33,7 +33,7 @@ jobs:
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           files: |
             polytone/*.zip
-          version: 1.0.${{ GITHUB_RUN_NUMBER }}
+          version: 1.0.${{ env.GITHUB_RUN_NUMBER }}
           game-versions: |
             1.20.1
           dependencies: |
