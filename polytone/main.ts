@@ -68,7 +68,10 @@ function addColored(
     loader.registries.validateEntry("minecraft:item", id);
     return id;
   });
-  loader.tabs.add(tab, ids, { file: { namespace: PACK_NAMESPACE, path: mod } });
+  loader.tabs.add(tab, ids, {
+    file: { namespace: PACK_NAMESPACE, path: mod },
+    mods: [mod],
+  });
   logger.info(` added ${base}s from ${mod}`);
 }
 

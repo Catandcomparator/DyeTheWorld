@@ -1,15 +1,18 @@
 {
   "name": "polytone",
+  "private": true,
+  "type": "module",
   "module": "main.ts",
+  "scripts": {
+    "prepare": "datamod codegen --output . --registry-dump ./dump"
+  },
+  "dependencies": {
+    "@pssbletrngle/data-modifier": "^0.3.5"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "scripts": {
-    "prepare": "datamod codegen --output . --registry-dump ./dump"
-  },
-  "private": true,
-  "type": "module"
+  }
 }
