@@ -30,6 +30,7 @@ sealed class DyedTags<T>(private val registry: ResourceKey<Registry<T>>) {
         val FLOOR_CHAIRS = create(Mods.CREATE_INTERIORS, "floor_chairs")
         val NON_CLEANABLE = create(Mods.SUPPLEMENTARIES, "non_cleanable")
         val AWNINGS = create(Mods.SUPPLEMENTARIES, "awnings")
+        val SHARESTONE = create(Mods.WAYSTONES, "sharestone")
     }
 
     object Blocks : DyedTags<Block>(Registries.BLOCK) {

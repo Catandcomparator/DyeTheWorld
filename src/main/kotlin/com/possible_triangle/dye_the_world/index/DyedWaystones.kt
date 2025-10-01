@@ -98,6 +98,7 @@ object DyedWaystones {
             .withItem {
                 optionalTag(ModItemTags.DYED_SHARESTONES)
                 optionalTag(ModItemTags.SHARESTONES)
+                optionalTag(DyedTags.Items.SHARESTONE)
                 recipe { c, p -> p.dyeingRecipe(dye, ModItemTags.SHARESTONES, c) }
                 model { context, provider ->
                     provider.withExistingParent(context.name, WAYSTONES.createId("item/scoped_sharestone"))
