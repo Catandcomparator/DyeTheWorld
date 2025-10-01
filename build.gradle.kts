@@ -36,9 +36,6 @@ forge {
 
     mods.include(libs.registrate)
     mods.include(libs.multikulti.datagen.fix)
-    // TODO do I need this?
-    mods.include(libs.multikulti.core)
-    // includesMod("com.possible-triangle:multikulti-registrate-forge:${mc_version}-${multikulti_version}")
 }
 
 // needed because of flywheel accessing the config too early
@@ -84,7 +81,9 @@ repositories {
 }
 
 dependencies {
+    modImplementation(libs.multikulti.core)
     modImplementation(libs.multikulti.datagen)
+
     modImplementation(variantOf(libs.create) {
         classifier("slim")
     }) {
