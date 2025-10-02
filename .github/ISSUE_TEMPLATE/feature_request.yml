@@ -1,7 +1,8 @@
 name: Feature Request
 description: Suggest a feature (other then mod compat)
-labels: ["enhancement", "feature", "feature-request"]
+labels: ["enhancement"]
 assignees: [PssbleTrngle]
+projects: [PssbleTrngle/16]
 
 body:
   - type: textarea

@@ -1,6 +1,8 @@
 name: Request Compatibility
 description: I want dye depot to be compatible with a specific mod, or a specific feature from a mod
 labels: [enhancement, compat]
+assignees: [PssbleTrngle]
+projects: [PssbleTrngle/16]
 
 body:
   - type: textarea
