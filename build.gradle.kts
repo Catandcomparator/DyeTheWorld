@@ -67,9 +67,11 @@ dependencies {
     modImplementation(libs.multikulti.core)
     modImplementation(libs.multikulti.datagen)
 
-    modImplementation(variantOf(libs.create) {
-        classifier("slim")
-    }) {
+    modImplementation(
+        variantOf(libs.create) {
+            classifier("slim")
+        },
+    ) {
         isTransitive = false
     }
     modImplementation(libs.ponder)
