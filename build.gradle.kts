@@ -1,16 +1,14 @@
-
-import com.possible_triangle.gradle.features.publishing.DependencyBuilder
-import net.minecraftforge.gradle.common.util.MinecraftExtension
-
-val mod_id: String by extra
-val mc_version: String by extra
-
 plugins {
-    alias(libs.plugins.gradle.helper)
+    id("com.possible-triangle.forge")
     idea
 }
 
 withKotlin()
+
+mod {
+    mods.include(libs.registrate)
+    mods.include(libs.multikulti.datagen.fix)
+}
 
 forge {
     enableMixins()
@@ -33,24 +31,9 @@ forge {
         existing("moreconcrete")
         existing("interiors")
     }
-
-    mods.include(libs.registrate)
-    mods.include(libs.multikulti.datagen.fix)
-}
-
-// needed because of flywheel accessing the config too early
-configure<MinecraftExtension> {
-    runs {
-        forEach {
-            it.property("production", "true")
-        }
-    }
 }
 
 repositories {
-    modrinthMaven()
-    mavenLocal()
-
     nexus {
         content {
             includeGroup("com.possible-triangle")
@@ -130,46 +113,48 @@ tasks.processResources {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-enablePublishing {
-    githubPackages()
-    nexus()
-}
-
-fun DependencyBuilder.addDependencies() {
-    required("dye-depot")
-    optional("create")
-    optional("another-furniture")
-    optional("comforts")
-    optional("clayworks")
-    optional("farmers-delight")
-    optional("quark")
-    optional("domestication-innovation")
-    optional("supplementaries")
-    optional("supplementaries-squared")
-    optional("alexs-caves")
-    optional("ars-nouveau")
-    optional("create-deco")
-    optional("create-steam-n-rails")
-    optional("upgrade-aquatic")
-    optional("more-concrete")
-    optional("waystones")
-    optional("interiors")
-}
-
-uploadToCurseforge {
-    dependencies {
-        addDependencies()
-        optional("chalk")
-    }
-}
-
-uploadToModrinth {
-    dependencies {
-        addDependencies()
-        optional("chalk-mod")
+upload {
+    maven {
+        githubPackages()
+        nexus()
     }
 
-    syncBodyFromReadme()
+    curseforge {
+        dependencies {
+            optional("chalk")
+        }
+    }
+
+    modrinth {
+        dependencies {
+            optional("chalk-mod")
+        }
+
+        syncBodyFromReadme()
+    }
+
+    forEach {
+        dependencies {
+            required("dye-depot")
+            optional("create")
+            optional("another-furniture")
+            optional("comforts")
+            optional("clayworks")
+            optional("farmers-delight")
+            optional("quark")
+            optional("domestication-innovation")
+            optional("supplementaries")
+            optional("supplementaries-squared")
+            optional("alexs-caves")
+            optional("ars-nouveau")
+            optional("create-deco")
+            optional("create-steam-n-rails")
+            optional("upgrade-aquatic")
+            optional("more-concrete")
+            optional("waystones")
+            optional("interiors")
+        }
+    }
 }
 
 idea {
