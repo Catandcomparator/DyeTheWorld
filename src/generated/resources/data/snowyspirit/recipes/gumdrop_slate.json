@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "snowyspirit"
+    }
+  ],
+  "group": "gumdrop",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "forge:dyes/slate"
+    }
+  ],
+  "result": {
+    "item": "snowyspirit:gumdrop_slate"
+  }
+}
