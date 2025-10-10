@@ -102,7 +102,7 @@ metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "02d8f73c4d1f35c4cd877ff6c988e2ea5fe35080e77a7a097b17c00233e62abc"
+hash = "1e3a1a97caff0bce36a008aeb2131dfdccbdf182b4f115d284f2297046a9e379"
 metafile = true
 
 [[files]]
@@ -123,6 +123,11 @@ metafile = true
 [[files]]
 file = "mods/registry-dump.pw.toml"
 hash = "6caa89370f57954c89f497c95773bac78de32323f16dd3d70a525126f6430a85"
+metafile = true
+
+[[files]]
+file = "mods/snowy-spirit.pw.toml"
+hash = "877c00272596072f5e49d1291258ba2ebfa94e9bf33445a3e96a76439bac94b5"
 metafile = true
 
 [[files]]

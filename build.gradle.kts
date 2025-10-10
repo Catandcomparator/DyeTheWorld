@@ -30,6 +30,7 @@ forge {
         existing("waystones")
         existing("moreconcrete")
         existing("interiors")
+        existing("snowyspirit")
     }
 }
 
@@ -95,6 +96,8 @@ dependencies {
     modImplementation(pack.modrinth.waystones)
     modImplementation(pack.modrinth.create.steam.n.rails)
     modImplementation(libs.dye.depot)
+    modImplementation(pack.modrinth.snowy.spirit)
+    // modImplementation(libs.snowy.spirit)
 
     modRuntimeOnly(libs.flywheel)
     modRuntimeOnly(libs.jei)
@@ -155,6 +158,7 @@ upload {
             optional("more-concrete")
             optional("waystones")
             optional("interiors")
+            optional("snowy-spirit")
         }
     }
 }
