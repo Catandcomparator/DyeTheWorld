@@ -1,8 +1,7 @@
 {
   "parent": "botanypots:block/botany_pot_base",
-  "render_type": "minecraft:cutout",
   "textures": {
-    "material": "dye_depot:block/rose_terracotta",
-    "material_top": "dye_the_world:block/botanypots/rose_terracotta"
+    "particle": "dye_depot:block/rose_terracotta",
+    "terracotta": "dye_depot:block/rose_terracotta"
   }
 }

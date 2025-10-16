@@ -31,6 +31,8 @@ forge {
         existing("moreconcrete")
         existing("interiors")
         existing("snowyspirit")
+        existing("connectedglass")
+        existing("botanypots")
     }
 }
 

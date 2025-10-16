@@ -1,8 +1,7 @@
 {
   "parent": "botanypots:block/botany_pot_base",
-  "render_type": "minecraft:cutout",
   "textures": {
-    "material": "dye_depot:block/mint_terracotta",
-    "material_top": "dye_the_world:block/botanypots/mint_terracotta"
+    "particle": "dye_depot:block/mint_terracotta",
+    "terracotta": "dye_depot:block/mint_terracotta"
   }
 }
