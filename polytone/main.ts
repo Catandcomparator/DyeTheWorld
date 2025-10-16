@@ -196,6 +196,8 @@ for (const type of ["concrete", "terracotta", "glazed_terracotta"]) {
   addColored("botanypots", `${type}_hopper_botany_pot`);
 }
 
+addColored("waystones", "sharestone");
+
 const name = "dye-depot-tabs.zip";
 const output = resolve(".", name);
 const merger = createDefaultMergers({
