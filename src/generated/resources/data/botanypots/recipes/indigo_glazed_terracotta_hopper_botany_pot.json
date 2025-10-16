@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "group": "botanypots:quick_hopper_pot",
+  "key": {
+    "H": {
+      "item": "minecraft:hopper"
+    },
+    "M": {
+      "item": "dye_depot:indigo_glazed_terracotta"
+    },
+    "P": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "pattern": [
+    "MHM",
+    "MPM",
+    " M "
+  ],
+  "result": {
+    "item": "botanypots:indigo_glazed_terracotta_hopper_botany_pot"
+  },
+  "show_notification": true
+}

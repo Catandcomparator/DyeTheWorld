@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "criteria": {
+    "has_borderless_glass_tan": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "connectedglass:borderless_glass_tan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "connectedglass:borderless_glass_tan_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_borderless_glass_tan",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "connectedglass:borderless_glass_tan_pane"
+    ]
+  },
+  "sends_telemetry_event": false
+}

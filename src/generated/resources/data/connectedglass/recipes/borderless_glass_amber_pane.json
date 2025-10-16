@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "connectedglass:borderless_glass_amber"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "connectedglass:borderless_glass_amber_pane"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "connectedglass:clear_glass_rose"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "connectedglass:clear_glass_rose_pane"
+  },
+  "show_notification": true
+}

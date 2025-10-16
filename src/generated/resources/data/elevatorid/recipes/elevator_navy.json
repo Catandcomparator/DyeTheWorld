@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "elevatorid"
+    }
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "W": {
+      "item": "dye_depot:navy_wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WEW",
+    "WWW"
+  ],
+  "result": {
+    "item": "elevatorid:elevator_navy"
+  },
+  "show_notification": true
+}

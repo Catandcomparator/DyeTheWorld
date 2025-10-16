@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "group": "botanypots:basic_pot",
+  "key": {
+    "M": {
+      "item": "dye_depot:rose_terracotta"
+    },
+    "P": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "pattern": [
+    "M M",
+    "MPM",
+    " M "
+  ],
+  "result": {
+    "item": "botanypots:rose_terracotta_botany_pot"
+  },
+  "show_notification": true
+}

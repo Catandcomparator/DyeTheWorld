@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "criteria": {
+    "has_clear_glass_verdant": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "connectedglass:clear_glass_verdant"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "connectedglass:clear_glass_verdant_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_clear_glass_verdant",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "connectedglass:clear_glass_verdant_pane"
+    ]
+  },
+  "sends_telemetry_event": false
+}

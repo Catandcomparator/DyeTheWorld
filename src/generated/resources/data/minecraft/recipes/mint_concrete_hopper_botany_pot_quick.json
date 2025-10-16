@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "group": "botanypots:hopper_pot",
+  "ingredients": [
+    {
+      "item": "minecraft:hopper"
+    },
+    {
+      "item": "botanypots:mint_concrete_botany_pot"
+    }
+  ],
+  "result": {
+    "item": "botanypots:mint_concrete_hopper_botany_pot"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "elevatorid"
+    }
+  ],
+  "ingredients": [
+    {
+      "tag": "forge:dyes/olive"
+    },
+    {
+      "tag": "elevatorid:elevators"
+    }
+  ],
+  "result": {
+    "item": "elevatorid:elevator_olive"
+  }
+}

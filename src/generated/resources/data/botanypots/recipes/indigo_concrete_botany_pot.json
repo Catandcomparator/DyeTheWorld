@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "group": "botanypots:basic_pot",
+  "key": {
+    "M": {
+      "item": "dye_depot:indigo_concrete"
+    },
+    "P": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "pattern": [
+    "M M",
+    "MPM",
+    " M "
+  ],
+  "result": {
+    "item": "botanypots:indigo_concrete_botany_pot"
+  },
+  "show_notification": true
+}

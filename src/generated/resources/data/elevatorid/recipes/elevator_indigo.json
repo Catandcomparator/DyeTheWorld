@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "elevatorid"
+    }
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "W": {
+      "item": "dye_depot:indigo_wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "WEW",
+    "WWW"
+  ],
+  "result": {
+    "item": "elevatorid:elevator_indigo"
+  },
+  "show_notification": true
+}

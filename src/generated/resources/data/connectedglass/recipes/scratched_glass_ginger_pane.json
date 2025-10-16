@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "key": {
+    "#": {
+      "item": "connectedglass:scratched_glass_ginger"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "connectedglass:scratched_glass_ginger_pane"
+  },
+  "show_notification": true
+}

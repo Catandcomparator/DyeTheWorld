@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "botanypots"
+    }
+  ],
+  "group": "botanypots:hopper_pot",
+  "ingredients": [
+    {
+      "item": "minecraft:hopper"
+    },
+    {
+      "item": "botanypots:maroon_terracotta_botany_pot"
+    }
+  ],
+  "result": {
+    "item": "botanypots:maroon_terracotta_hopper_botany_pot"
+  }
+}

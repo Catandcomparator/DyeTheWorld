@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "connectedglass"
+    }
+  ],
+  "criteria": {
+    "has_clear_glass_olive": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "connectedglass:clear_glass_olive"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "connectedglass:clear_glass_olive_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_clear_glass_olive",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "connectedglass:clear_glass_olive_pane"
+    ]
+  },
+  "sends_telemetry_event": false
+}

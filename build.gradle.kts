@@ -65,39 +65,39 @@ repositories {
 }
 
 dependencies {
-    modImplementation(libs.multikulti.core)
-    modImplementation(libs.multikulti.datagen)
+    modApi(libs.multikulti.core)
+    modApi(libs.multikulti.datagen)
 
-    modImplementation(
+    modApi(
         variantOf(libs.create) {
             classifier("slim")
         },
     ) {
         isTransitive = false
     }
-    modImplementation(libs.ponder)
+    modApi(libs.ponder)
     modCompileOnly(libs.flywheel.api)
-    modImplementation(pack.modrinth.another.furniture)
-    modImplementation(pack.modrinth.comforts)
-    modImplementation(pack.modrinth.moonlight)
-    modImplementation(pack.modrinth.supplementaries)
-    modImplementation(pack.modrinth.supplementaries.squared)
-    modImplementation(pack.modrinth.quark)
-    modImplementation(pack.modrinth.zeta)
-    modImplementation(pack.modrinth.farmers.delight)
-    modImplementation(pack.modrinth.clayworks)
-    modImplementation(pack.modrinth.upgrade.aquatic)
-    modImplementation(pack.modrinth.blueprint)
-    modImplementation(pack.modrinth.chalk.mod)
-    modImplementation(pack.modrinth.create.deco)
-    modImplementation(pack.modrinth.domestication.innovation)
-    modImplementation(pack.modrinth.alexs.caves)
-    modImplementation(pack.modrinth.alexs.mobs)
-    modImplementation(pack.modrinth.waystones)
-    modImplementation(pack.modrinth.create.steam.n.rails)
-    modImplementation(libs.dye.depot)
-    modImplementation(pack.modrinth.snowy.spirit)
-    // modImplementation(libs.snowy.spirit)
+    modApi(pack.modrinth.another.furniture)
+    modApi(pack.modrinth.comforts)
+    modApi(pack.modrinth.moonlight)
+    modApi(pack.modrinth.supplementaries)
+    modApi(pack.modrinth.supplementaries.squared)
+    modApi(pack.modrinth.quark)
+    modApi(pack.modrinth.zeta)
+    modApi(pack.modrinth.farmers.delight)
+    modApi(pack.modrinth.clayworks)
+    modApi(pack.modrinth.upgrade.aquatic)
+    modApi(pack.modrinth.blueprint)
+    modApi(pack.modrinth.chalk.mod)
+    modApi(pack.modrinth.create.deco)
+    modApi(pack.modrinth.domestication.innovation)
+    modApi(pack.modrinth.alexs.caves)
+    modApi(pack.modrinth.alexs.mobs)
+    modApi(pack.modrinth.waystones)
+    modApi(pack.modrinth.create.steam.n.rails)
+    modApi(libs.dye.depot)
+    modApi(pack.modrinth.snowy.spirit)
+    modApi(pack.modrinth.fusion.connected.textures)
 
     modRuntimeOnly(libs.flywheel)
     modRuntimeOnly(libs.jei)
@@ -132,6 +132,7 @@ upload {
     curseforge {
         dependencies {
             optional("chalk")
+            optional("openblocks-elevator")
         }
     }
 
@@ -164,6 +165,8 @@ upload {
             optional("waystones")
             optional("interiors")
             optional("snowy-spirit")
+            optional("botany-pots")
+            optional("connected-glass")
         }
     }
 }
