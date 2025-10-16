@@ -57,8 +57,6 @@ function replace(color: string, base: string) {
   return base.replace("$color", color);
 }
 
-let previous: IdInput<ItemId> | undefined = undefined;
-
 function requireItem(id: IdInput) {
   loader.registries.validateEntry("minecraft:item", id);
   return id as ItemId;
@@ -76,11 +74,8 @@ function addColored(
   loader.tabs.add(tab, ids, {
     file: { namespace: PACK_NAMESPACE, path: mod },
     mods: [mod],
-    after: previous,
   });
   logger.info(`  added ${base}s from ${mod}`);
-
-  previous = ids[ids.length - 1];
 }
 
 addColored("dye_depot", "dye");
@@ -160,6 +155,7 @@ addColored("dye_the_world", "bedroll", "upgrade_aquatic");
 addColored("dye_the_world", "quark_stool");
 
 addColored("chalk", "chalk");
+addColored("dye_the_world", "harness", "vanillabackport");
 
 addColored("create", "valve_handle");
 addColored("create", "toolbox");

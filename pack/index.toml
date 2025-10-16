@@ -136,6 +136,11 @@ hash = "51bf17db22eee5fb80da0b2efe87b846f1165bafc67a789782c5fd976c406ffa"
 metafile = true
 
 [[files]]
+file = "mods/platform.pw.toml"
+hash = "b1f540bb76039ab86c9160d8d92ca93fe21559aef95f1e5819f7061740c6e8a6"
+metafile = true
+
+[[files]]
 file = "mods/polytone.pw.toml"
 hash = "96d6ef91a108386ff19d45c201fa8c9fb8e0f3d4c3df3dff7396957a8350a419"
 metafile = true
@@ -173,6 +178,11 @@ metafile = true
 [[files]]
 file = "mods/upgrade-aquatic.pw.toml"
 hash = "909482378bf0ed15645bcbba896daf9e83b7ef4e100bc44d6d3a34090f13578f"
+metafile = true
+
+[[files]]
+file = "mods/vanillabackport.pw.toml"
+hash = "d4bcebc5c2ca1cf4b113959d2ad443c3c63a8a161df11e1bcbde5b5244a83e1a"
 metafile = true
 
 [[files]]

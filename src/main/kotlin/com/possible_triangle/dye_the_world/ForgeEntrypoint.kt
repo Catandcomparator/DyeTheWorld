@@ -60,6 +60,10 @@ object ForgeEntrypoint {
             CreateCompat.registerDyes()
         }
 
+        ifLoaded(Constants.Mods.VANILLA_BACKPORT) {
+            DyedVanillaBackport.register()
+        }
+
         if (DatagenModLoader.isRunningDataGen()) {
             REGISTRATE.generateTags()
             REGISTRATE.generatePackMetadata()

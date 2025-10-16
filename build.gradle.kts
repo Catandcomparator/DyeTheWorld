@@ -1,3 +1,6 @@
+val mod_id: String by extra
+val mc_version: String by extra
+
 plugins {
     id("com.possible-triangle.forge")
     idea
@@ -7,7 +10,6 @@ withKotlin()
 
 mod {
     mods.include(libs.registrate)
-    mods.include(libs.multikulti.datagen.fix)
 }
 
 forge {
@@ -70,11 +72,9 @@ dependencies {
     modImplementation(libs.multikulti.core)
     modImplementation(libs.multikulti.datagen)
 
-    modImplementation(
-        variantOf(libs.create) {
-            classifier("slim")
-        },
-    ) {
+    modImplementation(variantOf(libs.create) {
+        classifier("slim")
+    }) {
         isTransitive = false
     }
     modImplementation(libs.ponder)
@@ -100,7 +100,9 @@ dependencies {
     modImplementation(libs.dye.depot)
     modImplementation(pack.modrinth.snowy.spirit)
     modImplementation(pack.modrinth.fusion.connected.textures)
+    modImplementation(pack.modrinth.vanillabackport)
 
+    //modRuntimeOnly(pack.modrinth.immersiveengineering)
     modRuntimeOnly(libs.flywheel)
     modRuntimeOnly(libs.jei)
     modRuntimeOnly(pack.modrinth.jade)
@@ -119,6 +121,7 @@ dependencies {
     modRuntimeOnly(pack.modrinth.supermartijn642s.core.lib)
     modRuntimeOnly(pack.modrinth.bookshelf.lib)
     modRuntimeOnly(pack.modrinth.botany.pots)
+    modRuntimeOnly(pack.modrinth.platform)
 }
 
 tasks.processResources {
@@ -169,6 +172,7 @@ upload {
             optional("snowy-spirit")
             optional("botany-pots")
             optional("connected-glass")
+            optional("vanillabackport")
         }
     }
 }
