@@ -112,6 +112,11 @@ dependencies {
     // modRuntimeOnly(pack.modrinth.polytone)
     modRuntimeOnly(pack.modrinth.amendments)
     modRuntimeOnly(pack.modrinth.registry.dump)
+    modRuntimeOnly(pack.curseforge.openblocks.elevator)
+    modRuntimeOnly(pack.modrinth.connected.glass)
+    modRuntimeOnly(pack.modrinth.supermartijn642s.core.lib)
+    modRuntimeOnly(pack.modrinth.bookshelf.lib)
+    modRuntimeOnly(pack.modrinth.botany.pots)
 }
 
 tasks.processResources {
